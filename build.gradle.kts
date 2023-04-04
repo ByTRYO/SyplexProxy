@@ -1,4 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+group = "eu.syplex"
+version = "1.0-SNAPSHOT"
 
 plugins {
     id("java")
@@ -6,9 +7,6 @@ plugins {
 
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
-
-group = "eu.syplex"
-version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -20,7 +18,25 @@ dependencies {
     annotationProcessor("com.velocitypowered:velocity-api:3.1.1")
 }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+tasks {
+    shadowJar {
+        fun relocate(pkg: String) = relocate(pkg, "eu.syplex.proxy.dependency.$pkg")
+    }
+
+    java {
+        toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+    }
+
+    compileJava {
+        options.encoding = Charsets.UTF_8.name()
+        options.release.set(17)
+    }
+
+    compileKotlin {
+        kotlinOptions { jvmTarget = "17" }
+    }
+
+    javadoc { options.encoding = Charsets.UTF_8.name() }
+
+    processResources { filteringCharset = Charsets.UTF_8.name() }
 }
