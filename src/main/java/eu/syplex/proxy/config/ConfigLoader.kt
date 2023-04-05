@@ -1,0 +1,46 @@
+package eu.syplex.proxy.config
+
+import ninja.leaping.configurate.ConfigurationNode
+import ninja.leaping.configurate.loader.ConfigurationLoader
+import ninja.leaping.configurate.yaml.YAMLConfigurationLoader
+import org.yaml.snakeyaml.DumperOptions
+import java.io.File
+import java.nio.file.Files
+import java.nio.file.Path
+
+class ConfigLoader(private val dataDirectory: Path) {
+    private val dataFile: File = File(dataDirectory.toFile(), "config.yml")
+    private val loader: ConfigurationLoader<ConfigurationNode>
+
+    lateinit var configurationNode: ConfigurationNode
+
+    init {
+        loader = YAMLConfigurationLoader.builder()
+            .setFile(dataFile)
+            .setFlowStyle(DumperOptions.FlowStyle.BLOCK)
+            .build()
+        loadOrCreate()
+    }
+
+    private fun loadOrCreate() {
+        if (!dataDirectory.toFile().exists()) dataDirectory.toFile().mkdirs()
+        if (!dataFile.exists()) {
+            val inputStream = javaClass.getResourceAsStream("/config.yml")
+            if (inputStream != null) {
+                Files.copy(inputStream, dataFile.toPath())
+            }
+        }
+        configurationNode = loader.load()
+    }
+
+    companion object {
+        private const val FANCY_HEADER = "  _____                     \n" +
+                " |  __ \\                    \n" +
+                " | |__) | __ _____  ___   _ \n" +
+                " |  ___/ '__/ _ \\ \\/ / | | |\n" +
+                " | |   | | | (_) >  <| |_| |\n" +
+                " |_|   |_|  \\___/_/\\_\\\\__, |\n" +
+                "                       __/ |\n" +
+                "                      |___/ "
+    }
+}
