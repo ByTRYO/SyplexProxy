@@ -5,6 +5,7 @@ import ninja.leaping.configurate.ConfigurationNode
 
 class ComponentTranslator(private val configurationNode: ConfigurationNode) {
     fun fromConfig(node: String, child: String): Component {
-        return Component.text(configurationNode.getNode(node).getString(child))
+        val content = configurationNode.getNode(node).getNode(child).getString(null)
+        return Component.text(content)
     }
 }
