@@ -4,6 +4,7 @@ version = "1.0-SNAPSHOT"
 plugins {
     id("java")
     kotlin("jvm") version "1.8.20"
+    kotlin("kapt") version "1.8.20"
 
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
@@ -14,13 +15,22 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
     compileOnly("com.velocitypowered:velocity-api:3.1.1")
-    annotationProcessor("com.velocitypowered:velocity-api:3.1.1")
+
+    kapt("com.velocitypowered:velocity-api:3.1.1")
 }
 
 tasks {
+
     shadowJar {
         fun relocate(pkg: String) = relocate(pkg, "eu.syplex.proxy.dependency.$pkg")
+
+        dependencies {
+            include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
+        }
+
+        archiveFileName.set("Proxy-$version-dev.jar")
     }
 
     java {
@@ -39,4 +49,8 @@ tasks {
     javadoc { options.encoding = Charsets.UTF_8.name() }
 
     processResources { filteringCharset = Charsets.UTF_8.name() }
+
+    assemble {
+        dependsOn(shadowJar)
+    }
 }
