@@ -32,15 +32,4 @@ class ConfigLoader(private val dataDirectory: Path) {
         }
         configurationNode = loader.load()
     }
-
-    companion object {
-        private const val FANCY_HEADER = "  _____                     \n" +
-                " |  __ \\                    \n" +
-                " | |__) | __ _____  ___   _ \n" +
-                " |  ___/ '__/ _ \\ \\/ / | | |\n" +
-                " | |   | | | (_) >  <| |_| |\n" +
-                " |_|   |_|  \\___/_/\\_\\\\__, |\n" +
-                "                       __/ |\n" +
-                "                      |___/ "
-    }
 }
