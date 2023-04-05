@@ -23,7 +23,7 @@ class YouTubeCommand : SimpleCommand {
         }
 
         val message = Component.text("Unsere Anforderungen an YouTuber findet du").color(NamedTextColor.GRAY)
-            .append(Component.text("[Hier]")
+            .append(Component.text(" [Hier]")
                 .color(NamedTextColor.GREEN)
                 .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, "https://syplex.eu/forum")))
 
