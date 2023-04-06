@@ -3,8 +3,7 @@ package eu.syplex.proxy.command
 import com.velocitypowered.api.command.SimpleCommand
 import com.velocitypowered.api.proxy.Player
 import eu.syplex.proxy.util.ComponentTranslator
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.NamedTextColor
+import eu.syplex.proxy.util.Placeholder
 
 class PingCommand(private val translator: ComponentTranslator) : SimpleCommand {
 
@@ -18,10 +17,10 @@ class PingCommand(private val translator: ComponentTranslator) : SimpleCommand {
         }
 
         if (args.isNotEmpty()) {
-            source.sendMessage(Component.text("Bitte benutze ").color(NamedTextColor.RED).append(Component.text("/ping").color(NamedTextColor.GOLD)))
+            source.sendMessage(translator.fromConfigWithReplacement("messages", "invalid-usage", Placeholder.command, "ping"))
             return
         }
 
-        source.sendMessage(Component.text("Dein Ping beträgt ").color(NamedTextColor.GRAY).append(Component.text("${source.ping}ms").color(NamedTextColor.GOLD)))
+        source.sendMessage(translator.fromConfigWithReplacement("messages", "ping", Placeholder.ping, "${source.ping}"))
     }
 }
