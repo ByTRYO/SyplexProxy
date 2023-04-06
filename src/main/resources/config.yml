@@ -8,12 +8,12 @@
 #                       |___/
 
 messages:
-  invalid-usage: "<red>Bitte benutze <gold>%command%"
-  no-permission: "<red>Dazu hast du keine Rechte!"
-  no-player: "<red>Dazu musst du ein Spieler sein!"
-  ping: "<grey>Dein Ping beträgt <gold>%ping%ms"
-  youtube: "<grey>Unsere Anforderungen an YouTuber findet du"
-  youtube-clickable: "<green> [Hier]"
+  invalid-usage: "&cBitte benutze &6/%command%&c!"
+  no-permission: "&cDazu hast du keine Rechte!"
+  no-player: "&cDazu musst du ein Spieler sein!"
+  ping: "&7Dein Ping beträgt &6%ping%ms"
+  youtube: "&7Unsere Anforderungen an YouTuber findet du"
+  youtube-clickable: "&a [Hier]"
 urls:
   youtube: "https://syplex.eu/forum"
 
