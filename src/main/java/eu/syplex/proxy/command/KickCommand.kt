@@ -2,12 +2,15 @@ package eu.syplex.proxy.command
 
 import com.velocitypowered.api.command.SimpleCommand
 import com.velocitypowered.api.proxy.ProxyServer
+import eu.syplex.proxy.backend.PlayerTracker
+import eu.syplex.proxy.backend.ProxyPlayer
 import eu.syplex.proxy.util.ComponentTranslator
+import eu.syplex.proxy.util.Notifier
 import eu.syplex.proxy.util.Placeholder
 import net.kyori.adventure.text.Component
 
 
-class KickCommand(private val server: ProxyServer, private val translator: ComponentTranslator) : SimpleCommand {
+class KickCommand(private val server: ProxyServer, private val translator: ComponentTranslator, private val playerTracker: PlayerTracker) : SimpleCommand {
 
     override fun execute(invocation: SimpleCommand.Invocation) {
         val sender = invocation.source()
@@ -24,20 +27,33 @@ class KickCommand(private val server: ProxyServer, private val translator: Compo
             return
         }
 
-        if (args.size == 1) { // No custom reason was given
-            optionalPlayer.get().disconnect(translator.fromConfig( "got-kicked"))
+        val target = optionalPlayer.get()
+        val proxyPlayer = playerTracker.get(target.uniqueId)
+
+        if(proxyPlayer == null) {
+            sender.sendMessage(translator.fromConfig("not-online"))
             return
         }
 
-        val stringBuilder = StringBuilder()
+        val notifier = Notifier(server, translator)
 
+        if (args.size == 1) { // No custom reason was given
+            proxyPlayer.kick(translator.fromConfig("kick-disconnect"))
+            notifier.notifyKick(target)
+            return
+        }
+
+        val builder = StringBuilder()
         for (i in 1 until args.size) { // Construct the custom reason
-            stringBuilder.append(args[i])
+            builder.append(args[i])
             if (i != args.size - 1) {
-                stringBuilder.append(" ")
+                builder.append(" ")
             }
         }
 
-        optionalPlayer.get().disconnect(Component.text(stringBuilder.toString()))
+        val reason = builder.toString()
+
+        proxyPlayer.kick(Component.text(reason))
+        notifier.notifyKickWithReason(target, reason)
     }
 }
