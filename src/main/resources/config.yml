@@ -14,6 +14,29 @@
 # Diese Konfigurationsdatei verwendet legacy Farbcodes zur Darstellung von Farben. Bei Bedarf ist eine Implementierung der Farbcodes von
 # der Adventure API (https://docs.advntr.dev/) möglich. Hierfür bitte ebenfalls ein neues Issue erstellen.
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# AB HIER BEGINNT DER TEIL, WELCHER FÜR DIE VERBINDUNG ZUR DATENBANK WICHTIG IST
+#
+
+# Der Hostname, unter dem die Datenbank erreichbar ist. Kann sowohl eine IP-Adresse, als auch eine Domain sein.
+db-host: "127.0.0.1"
+
+# Der Port, auf den die Datenbank hört
+db-port: "3306"
+
+# Der Name der Datenbank, auf die zugegriffen werden soll
+db-database: "proxy"
+
+# Der Benutzername des Kontos, welche für den Datenbankzugriff verwendet wird. "root" wird aus Gründen der Sicherheit nicht empfohlen.
+db-username: "root"
+
+# Das Passwort des Benutzerkontos. Falls nicht gesetzt, bitte die Konfiguration hier leer stehen lassen.
+db-password: ""
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# AB HIER BEGINNT DER TEIL, WELCHER FÜR MINECRAFT RELEVANT IST
+#
+
 # Nachricht, welche gesendet wird, wenn die Syntax eines Befehls nicht korrekt genutzt wurde.
 # Placeholder:
 #   - %command% - Die korrekte Syntax, die zu nutzen ist
