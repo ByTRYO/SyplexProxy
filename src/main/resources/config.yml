@@ -15,7 +15,9 @@
 # der Adventure API (https://docs.advntr.dev/) möglich. Hierfür bitte ebenfalls ein neues Issue erstellen.
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# AB HIER BEGINNT DER TEIL, WELCHER FÜR DIE VERBINDUNG ZUR DATENBANK WICHTIG IST
+# AB HIER BEGINNT DER TEIL, WELCHER FÜR DIE VERBINDUNG ZUR DATENBANK WICHTIG IST!
+#
+# Hinweis: Die hier gesetzten Standardwerte werden ebenfalls verwendet, wenn die Konfiguration nicht geladen werden konnte.
 #
 
 # Der Hostname, unter dem die Datenbank erreichbar ist. Kann sowohl eine IP-Adresse, als auch eine Domain sein.
@@ -34,7 +36,7 @@ db-username: "root"
 db-password: ""
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# AB HIER BEGINNT DER TEIL, WELCHER FÜR MINECRAFT RELEVANT IST
+# AB HIER BEGINNT DER TEIL, WELCHER FÜR MINECRAFT RELEVANT IST!
 #
 
 # Nachricht, welche gesendet wird, wenn die Syntax eines Befehls nicht korrekt genutzt wurde.
@@ -65,9 +67,187 @@ youtube-clickable: "&a [Hier]"
 # URL, auf die der Spieler weitergeleitet werden soll, wenn auf den klickbaren Teil der YouTube Befehlsnachricht geklickt wurde
 youtube-requirements-url: "https://syplex.eu/forum"
 
+# Nachricht, welche dem Spieler gesendet wird, wenn er einen Spieler erfolgreich vom Server gekickt hat.
+kick: "&7Du hast den Spieler &6%player% &cvom Server gekickt."
+
+# Nachricht, welche dem Spieler gesendet wird, wenn er einen Spieler erfolgreich vom Server gekickt und einen Grund angegeben hat.
+# Placeholder:
+#   - %player% - Der Name des gekickten Spielers
+#   - %reason% - Der Grund, warum der Spieler gekickt wurde
+kick-with-reason: "&7Du hast den Spieler &6%player% &7wegen &6%reason% &cvom Server gekickt."
+
+# Nachricht, welche an alle Teammitglieder auf dem Server gesendet wird, wenn ein Spieler gekickt wurde
+# Placeholder:
+#   - %player% - Der Name des Teammitglieds
+#   - %target% - Der Name des gekickten Spielers
+kick-notify: "&7Das Teammitglied &a%player% &7hat den Spieler &c%target% vom Server gekickt."
+
+# Nachricht, welche an alle Teammitglieder auf dem Server gesendet wird, wenn ein Spieler gekickt wurde
+# Placeholder:
+#   - %player% - Der Name des Teammitglieds
+#   - %target% - Der Name des gekickten Spielers
+#   - %reason% - Der Grund, weshalb der Spieler gekickt wurde
+kick-notify-with-reason: "&7Das Teammitglied &a%player% &7hat den Spieler &c%target% &7wegen &b%reason% &7vom Server gekickt."
+
 # Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gekickt wurde.
-got-kicked: "&cDu wurdest gekickt!"
+kick-disconnect: "&cDu wurdest gekickt!"
 
+# Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gebannt wurde.
+ban-disconnect: "&cDu wurdest gebannt."
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
+#
+# Die im Folgenden definierten Längen sind in Millisekunden anzugeben. -1 wird als permanent interpretiert.
+#
 
+# Banngrund mit der ID #1
+ban-reason-1: "Hacking"
 
+# Banngrund mit der ID #2
+ban-reason-2: "Teaming"
+
+# Banngrund mit der ID #3
+ban-reason-3: "Unerlaubter Name"
+
+# Banngrund mit der ID #4
+ban-reason-4: "Unerlaubter Skin"
+
+# Banngrund mit der ID #5
+ban-reason-5: "Rassismus"
+
+# Banngrund mit der ID #6
+ban-reason-6: "Provokation"
+
+# Banngrund mit der ID #7
+ban-reason-7: "Extreme Beleidigung"
+
+# Banngrund mit der ID #8
+ban-reason-8: "Werbung"
+
+# Banngrund mit der ID #9
+ban-reason-9: "Accountliste"
+
+# Banngrund mit der ID #10
+ban-reason-10: "Bannumgehung"
+
+# Banngrund mit der ID #11
+ban-reason-11: "Reportausnutzung"
+
+# Banngrund mit der ID #12
+ban-reason-12: "Bugusing"
+
+# Banngrund mit der ID #13
+ban-reason-13: "Drohung"
+
+# Banngrund mit der ID #14
+ban-reason-14: "Custom Grund-1, änderbar in der Config"
+
+# Banngrund mit der ID #15
+ban-reason-15: "Custom Grund-2, änderbar in der Config"
+
+# Länge des Banns mit der ID #1 in Millisekunden
+ban-duration-1: 0
+
+# Länge des Banns mit der ID #2 in Millisekunden
+ban-duration-2: 0
+
+# Länge des Banns mit der ID #3 in Millisekunden
+ban-duration-3: 0
+
+# Länge des Banns mit der ID #4 in Millisekunden
+ban-duration-4: 0
+
+# Länge des Banns mit der ID #5 in Millisekunden
+ban-duration-5: 0
+
+# Länge des Banns mit der ID #6 in Millisekunden
+ban-duration-6: 0
+
+# Länge des Banns mit der ID #7 in Millisekunden
+ban-duration-7: 0
+
+# Länge des Banns mit der ID #8 in Millisekunden
+ban-duration-8: 0
+
+# Länge des Banns mit der ID #9 in Millisekunden
+ban-duration-9: 0
+
+# Länge des Banns mit der ID #10 in Millisekunden
+ban-duration-10: 0
+
+# Länge des Banns mit der ID #11 in Millisekunden
+ban-duration-11: 0
+
+# Länge des Banns mit der ID #12 in Millisekunden
+ban-duration-12: 0
+
+# Länge des Banns mit der ID #13 in Millisekunden
+ban-duration-13: 0
+
+# Länge des Banns mit der ID #14 in Millisekunden
+ban-duration-14: 0
+
+# Länge des Banns mit der ID #15 in Millisekunden
+ban-duration-15: 0
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# AB HIER BEGINNT DER TEIL, WELCHER FÜR MUTES RELEVANT IST!
+#
+# Die im Folgenden definierten Längen sind in Millisekunden anzugeben. -1 wird als permanent interpretiert.
+#
+
+# Mutegrund mit der ID #1
+mute-reason-1: "Beleidigung | Teammitglied"
+
+# Mutegrund mit der ID #2
+mute-reason-2: "Beleidigung | Spieler"
+
+# Mutegrund mit der ID #3
+mute-reason-3: "Beleidigung | Server"
+
+# Mutegrund mit der ID #4
+mute-reason-4: "Verhalten | Respektlos"
+
+# Mutegrund mit der ID #6
+mute-reason-5: "Verhalten | Asozial"
+
+# Länge des Banns mit der ID #1 in Millisekunden
+mute-duration-1: 0
+
+# Länge des Banns mit der ID #2 in Millisekunden
+mute-duration-2: 0
+
+# Länge des Banns mit der ID #3 in Millisekunden
+mute-duration-3: 0
+
+# Länge des Banns mit der ID #4 in Millisekunden
+mute-duration-4: 0
+
+# Länge des Banns mit der ID #5 in Millisekunden
+mute-duration-5: 0
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# AB HIER BEGINNT DER TEIL, WELCHER FÜR REPORTS RELEVANT IST!
+#
+
+# Reportgrund mit der ID #1
+report-reason-1: "Hacking"
+
+# Reportgrund mit der ID #2
+report-reason-2: "Beleidigung"
+
+# Reportgrund mit der ID #3
+report-reason-3: "Skin"
+
+# Reportgrund mit der ID #4
+report-reason-4: "Name"
+
+# Reportgrund mit der ID #5
+report-reason-5: "Trolling"
+
+# Reportgrund mit der ID #6
+report-reason-6: "Spam"
+
+# Reportgrund mit der ID #7
+report-reason-7: "Werbung"
