@@ -12,12 +12,14 @@ plugins {
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://eldonexus.de/repository/maven-public")
 }
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
-    compileOnly("com.velocitypowered:velocity-api:3.1.1")
+    implementation("de.chojo.sadu", "sadu", "1.2.0")
 
+    compileOnly("com.velocitypowered:velocity-api:3.1.1")
     kapt("com.velocitypowered:velocity-api:3.1.1")
 }
 
