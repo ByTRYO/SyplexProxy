@@ -11,9 +11,11 @@ messages:
   invalid-usage: "&cBitte benutze &6/%command%&c!"
   no-permission: "&cDazu hast du keine Rechte!"
   no-player: "&cDazu musst du ein Spieler sein!"
+  not-online: "&cDieser Spieler ist nicht online!"
   ping: "&7Dein Ping beträgt &6%ping%ms"
   youtube: "&7Unsere Anforderungen an YouTuber findet du"
   youtube-clickable: "&a [Hier]"
+  kick: "&cDu wurdest gekickt!"
 urls:
   youtube: "https://syplex.eu/forum"
 
