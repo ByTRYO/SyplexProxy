@@ -12,15 +12,15 @@ class PingCommand(private val translator: ComponentTranslator) : SimpleCommand {
         val args = invocation.arguments()
 
         if (source !is Player) {
-            source.sendMessage(translator.fromConfig("messages", "no-player"))
+            source.sendMessage(translator.fromConfig("no-player"))
             return
         }
 
         if (args.isNotEmpty()) {
-            source.sendMessage(translator.fromConfigWithReplacement("messages", "invalid-usage", Placeholder.command, "ping"))
+            source.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "ping"))
             return
         }
 
-        source.sendMessage(translator.fromConfigWithReplacement("messages", "ping", Placeholder.ping, "${source.ping}"))
+        source.sendMessage(translator.fromConfigWithReplacement("ping", Placeholder.ping, "${source.ping}"))
     }
 }

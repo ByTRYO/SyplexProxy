@@ -6,19 +6,19 @@ import ninja.leaping.configurate.ConfigurationNode
 
 class ComponentTranslator(private val configurationNode: ConfigurationNode) {
 
-    fun fromConfig(node: String, child: String): Component {
-        return LegacyComponentSerializer.legacyAmpersand().deserialize(raw(node, child))
+    fun fromConfig(node: String): Component {
+        return LegacyComponentSerializer.legacyAmpersand().deserialize(raw(node))
     }
 
-    fun fromConfigWithReplacement(node: String, child: String, placeholder: String, value: String): Component {
-        val raw = raw(node, child)
-        val replaced = raw.replace(placeholder, value)
+    fun fromConfigWithReplacement(node: String, placeholder: String, replacement: String): Component {
+        val raw = raw(node)
+        val replaced = raw.replace(placeholder, replacement)
 
         return LegacyComponentSerializer.legacyAmpersand().deserialize(replaced)
     }
 
-    private fun raw(node: String, child: String): String {
-        return configurationNode.getNode(node, child).getString(null)
+    fun raw(node: String): String {
+        return configurationNode.getNode(node).getString(null)
     }
 
 }

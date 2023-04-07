@@ -11,7 +11,6 @@ import eu.syplex.proxy.command.YouTubeCommand
 import eu.syplex.proxy.config.ConfigLoader
 import eu.syplex.proxy.util.CommandPool
 import eu.syplex.proxy.util.ComponentTranslator
-import eu.syplex.proxy.util.URLHandler
 import java.nio.file.Path
 import java.util.logging.Logger
 
@@ -19,12 +18,10 @@ import java.util.logging.Logger
 class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, private val logger: Logger, @DataDirectory private val dataDirectory: Path) {
 
     private val translator: ComponentTranslator
-    private val urlHandler: URLHandler
 
     init {
         val configurationNode = ConfigLoader(dataDirectory).configurationNode
         translator = ComponentTranslator(configurationNode)
-        urlHandler = URLHandler(configurationNode)
 
         logger.info("Plugin was enabled successfully")
     }
@@ -33,7 +30,7 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, private val 
     fun onProxyInitialization(event: ProxyInitializeEvent) {
         val pool = CommandPool(this)
         pool.register(PingCommand(translator), "ping")
-        pool.register(YouTubeCommand(translator, urlHandler), "youtube", "yt")
+        pool.register(YouTubeCommand(translator), "youtube", "yt")
     }
 
 }

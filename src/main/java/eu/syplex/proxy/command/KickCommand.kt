@@ -13,25 +13,25 @@ class KickCommand(private val server: ProxyServer, private val translator: Compo
         val sender = invocation.source()
         val args = invocation.arguments()
 
-        if (args.isEmpty()) { //Check for valid syntax.
-            sender.sendMessage(translator.fromConfigWithReplacement("messages", "invalid-usage", Placeholder.command, "kick <Name> <Grund>"))
+        if (args.isEmpty()) { //Check for a valid syntax
+            sender.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "kick <Name> <Grund>"))
             return
         }
 
         val optionalPlayer = server.getPlayer(args[0])
-        if (!optionalPlayer.isPresent) { // check if player is online.
-            sender.sendMessage(translator.fromConfig("messages", "not-online"))
+        if (!optionalPlayer.isPresent) { // Check if player is online
+            sender.sendMessage(translator.fromConfig("not-online"))
             return
         }
 
-        if (args.size == 1) { //custom reason was given.
-            optionalPlayer.get().disconnect(translator.fromConfig("messages", "kick"))
+        if (args.size == 1) { // No custom reason was given
+            optionalPlayer.get().disconnect(translator.fromConfig( "got-kicked"))
             return
         }
 
         val stringBuilder = StringBuilder()
 
-        for (i in 1 until args.size) { //construct reason
+        for (i in 1 until args.size) { // Construct the custom reason
             stringBuilder.append(args[i])
             if (i != args.size - 1) {
                 stringBuilder.append(" ")
