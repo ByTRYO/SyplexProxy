@@ -19,7 +19,7 @@ class KickCommand(private val server: ProxyServer, private val translator: Compo
         }
 
         val optionalPlayer = server.getPlayer(args[0])
-        if (optionalPlayer.isEmpty) { // check if player is online.
+        if (!optionalPlayer.isPresent) { // check if player is online.
             sender.sendMessage(translator.fromConfig("messages", "not-online"))
             return
         }
