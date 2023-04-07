@@ -7,16 +7,44 @@
 #                        __/ |
 #                       |___/
 
-messages:
-  invalid-usage: "&cBitte benutze &6/%command%&c!"
-  no-permission: "&cDazu hast du keine Rechte!"
-  no-player: "&cDazu musst du ein Spieler sein!"
-  not-online: "&cDieser Spieler ist nicht online!"
-  ping: "&7Dein Ping beträgt &6%ping%ms"
-  youtube: "&7Unsere Anforderungen an YouTuber findet du"
-  youtube-clickable: "&a [Hier]"
-  kick: "&cDu wurdest gekickt!"
-urls:
-  youtube: "https://syplex.eu/forum"
+# Dies ist die zentrale Konfigurationsdatei des Proxy-Plugins made by Merry & Tobi.
+# Fehler sind unter der URL http://gitlab.syplex.eu:8080/Merry/Proxy/issues als Issue zu melden.
+
+# Placeholder müssen in den entsprechenden Konfigurationen verwendet werden, sofern dies durch die Standardkonfigurationsdatei vorgegeben ist!
+# Diese Konfigurationsdatei verwendet legacy Farbcodes zur Darstellung von Farben. Bei Bedarf ist eine Implementierung der Farbcodes von
+# der Adventure API (https://docs.advntr.dev/) möglich. Hierfür bitte ebenfalls ein neues Issue erstellen.
+
+# Nachricht, welche gesendet wird, wenn die Syntax eines Befehls nicht korrekt genutzt wurde.
+# Placeholder:
+#   - %command% - Die korrekte Syntax, die zu nutzen ist
+invalid-usage: "&cBitte benutze &6/%command%&c!"
+
+# Nachricht, welche gesendet wird, wenn der Spieler, der den Befehl nutzt, dazu keine Rechte hat.
+no-permission: "&cDazu hast du keine Rechte!"
+
+# Nachricht, welche gesendet wird, wenn der Befehl nicht durch einen Spieler benutzt wurde.
+no-player: "&cDazu musst du ein Spieler sein!"
+
+# Nachricht, welche gesendet wird, wenn ein abgefragter Spieler nicht auf dem Server online ist.
+not-online: "&cDieser Spieler ist nicht online!"
+
+# Nachricht, welche gesendet wird, wenn ein Spieler den Ping Befehl nutzt.
+# Placeholder:
+#   - %ping% - Der Ping des Spielers
+ping: "&7Dein Ping beträgt &6%ping%ms"
+
+# Erster Teil der Nachricht, welche gesendet wird, wenn ein Spieler den YouTube Befehl nutzt. Dieser Teil ist nicht anklickbar.
+youtube-non-clickable: "&7Unsere Anforderungen an YouTuber findet du"
+
+# Zweiter Teil der Nachricht, welche gesendet wird, wenn ein Spieler den YouTube Befehl nutzt. Dieser Teil ist anklickbar.
+youtube-clickable: "&a [Hier]"
+
+# URL, auf die der Spieler weitergeleitet werden soll, wenn auf den klickbaren Teil der YouTube Befehlsnachricht geklickt wurde
+youtube-requirements-url: "https://syplex.eu/forum"
+
+# Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gekickt wurde.
+got-kicked: "&cDu wurdest gekickt!"
+
+
 
 
