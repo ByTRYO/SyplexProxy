@@ -18,6 +18,7 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
     implementation("de.chojo.sadu", "sadu", "1.2.0")
+    implementation("net.kyori:adventure-text-minimessage:4.13.0")
 
     compileOnly("com.velocitypowered:velocity-api:3.1.1")
     kapt("com.velocitypowered:velocity-api:3.1.1")
@@ -27,6 +28,7 @@ tasks {
 
     shadowJar {
         fun relocate(pkg: String) = relocate(pkg, "eu.syplex.proxy.dependency.$pkg")
+        relocate("net.kyori.adventure")
 
         dependencies {
             include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
