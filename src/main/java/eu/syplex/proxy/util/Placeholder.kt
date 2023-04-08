@@ -7,5 +7,9 @@ object Placeholder {
     const val player = "%player%"
     const val target = "%target%"
     const val reason = "%reason%"
+    const val duration = "%duration%"
+    const val uid = "%uid%"
+    const val url = "%url%"
+    const val expires = "%expires%"
 
 }

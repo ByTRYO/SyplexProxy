@@ -1,9 +1,9 @@
-package eu.syplex.proxy.backend.punishment
+package eu.syplex.proxy.backend.punishment.entry
 
 import eu.syplex.proxy.backend.database.sadu.StaticQueryAdapter
-import eu.syplex.proxy.backend.punishment.impl.BanEntry
-import eu.syplex.proxy.backend.punishment.impl.KickEntry
-import eu.syplex.proxy.backend.punishment.impl.MuteEntry
+import eu.syplex.proxy.backend.punishment.entry.impl.BanEntry
+import eu.syplex.proxy.backend.punishment.entry.impl.KickEntry
+import eu.syplex.proxy.backend.punishment.entry.impl.MuteEntry
 import java.util.*
 
 object History {
@@ -31,7 +31,7 @@ object History {
             .parameter { stmt ->
                 stmt.setString(entry.uuid.toString())
                 stmt.setTimestamp(entry.date)
-                stmt.setFloat(entry.expires)
+                stmt.setTimestamp(entry.expires)
                 stmt.setString(entry.reason)
                 stmt.setInt(calcType(entry))
             }

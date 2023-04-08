@@ -8,6 +8,7 @@ class PlayerTracker {
 
     fun track(uuid: UUID, proxyPlayer: ProxyPlayer) {
         players[uuid] = proxyPlayer
+        proxyPlayer.register()
     }
 
     fun get(uuid: UUID): ProxyPlayer? {

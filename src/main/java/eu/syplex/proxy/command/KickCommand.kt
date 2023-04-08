@@ -35,11 +35,8 @@ class KickCommand(private val server: ProxyServer, private val translator: Compo
             return
         }
 
-        val notifier = Notifier(server, translator)
-
         if (args.size == 1) { // No custom reason was given
             proxyPlayer.kick(translator.fromConfig("kick-disconnect"))
-            notifier.notifyKick(target)
             return
         }
 
@@ -54,6 +51,5 @@ class KickCommand(private val server: ProxyServer, private val translator: Compo
         val reason = builder.toString()
 
         proxyPlayer.kick(Component.text(reason))
-        notifier.notifyKickWithReason(target, reason)
     }
 }

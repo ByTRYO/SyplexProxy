@@ -98,6 +98,30 @@ id-format-error: "&cDie ID muss eine gültige Zahl sein!"
 # Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gebannt wurde.
 ban-disconnect: "&cDu wurdest gebannt."
 
+# Nachricht, welche dem Spieler gesendet wird, falls der zu bannende Spieler bereits gebannt ist.
+already-banned: "&cDieser Spieler ist bereits gebannt!"
+
+# Erste Zeile des Bann-Screens
+# Placeholder:
+#   - %duration% - Die Länge des Banns
+ban-screen-line-1: "&cDu wurdest &4%duration% &cvon Syplex.eu gebannt."
+
+# Zweite Zeile des Bann-Screens
+# Placeholder:
+#   - %reason% - Der Banngrund
+#   - %uid% - Die eindeutige ID des Banns
+ban-screen-line-2: "&cGrund&7: &3%reason% &8[&7%uid%&8]"
+
+# Dritte Zeile des Bann-Screens
+# Placeholder:
+#   - %url% - Die URL zum Entbannungsantrag
+ban-screen-line-3: "&aDu kannst unter &e%url% &aeinen Entbannungsantrag stellen."
+
+# URL zum Entbannungsantrag
+unban-url: "https://account.syplex.eu"
+
+# Zusätzliche Zeile zwischen der zweiten und dritten im Bann-Screen, falls der Bann nicht permanent ist
+ban-screen-time-left: "&cVerbleibende Zeit&7: %expires%"
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #

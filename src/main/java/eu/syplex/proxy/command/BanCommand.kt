@@ -1,11 +1,20 @@
 package eu.syplex.proxy.command
 
+import com.velocitypowered.api.command.CommandSource
 import com.velocitypowered.api.command.SimpleCommand
+import com.velocitypowered.api.proxy.Player
 import com.velocitypowered.api.proxy.ProxyServer
+import eu.syplex.proxy.backend.PlayerTracker
+import eu.syplex.proxy.backend.punishment.custructor.ShortsConstructor
+import eu.syplex.proxy.backend.punishment.custructor.impl.BanReasonConstructor
 import eu.syplex.proxy.util.ComponentTranslator
 import eu.syplex.proxy.util.Placeholder
+import eu.syplex.proxy.util.StringUtil
+import ninja.leaping.configurate.ConfigurationNode
+import java.util.*
+import java.util.concurrent.CompletableFuture
 
-class BanCommand(private val proxyServer: ProxyServer, private val translator: ComponentTranslator) : SimpleCommand {
+class BanCommand(private val proxyServer: ProxyServer, private val translator: ComponentTranslator, private val configurationNode: ConfigurationNode, private val playerTracker: PlayerTracker) : SimpleCommand {
 
     override fun execute(invocation: SimpleCommand.Invocation) {
         val source = invocation.source()
@@ -24,8 +33,55 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
         }
 
         val target = optionalPlayer.get()
+        val proxyPlayer = playerTracker.get(target.uniqueId)
+        val id = assertIdIsNumeric(args[1], source)
 
-        TODO("Implement backend first")
+        if (proxyPlayer == null) return
 
+        if (proxyPlayer.isBanned()) {
+            source.sendMessage(translator.fromConfig("already-banned"))
+            return
+        }
+
+        val reason = BanReasonConstructor.construct(configurationNode, id)
+        proxyPlayer.ban(getUUID(source), reason, "#${ShortsConstructor.construct()}")
+    }
+
+    override fun suggestAsync(invocation: SimpleCommand.Invocation): CompletableFuture<MutableList<String>> {
+        val args = invocation.arguments()
+
+        if (args.size == 1) return CompletableFuture.completedFuture(StringUtil.copyPartialMatches(args[0], collectAllPlayerNames(), LinkedList()))
+        else if (args.size == 2) return CompletableFuture.completedFuture(StringUtil.copyPartialMatches(args[1], arrayListOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"), LinkedList()))
+
+        return CompletableFuture.completedFuture(Collections.emptyList())
+    }
+
+    private fun collectAllPlayerNames(): LinkedList<String> {
+        val names = LinkedList<String>()
+
+        for (player in proxyServer.allPlayers) {
+            names.add(player.username)
+        }
+
+        return names
+    }
+
+    private fun getUUID(source: CommandSource): UUID {
+        return when (source) {
+            is Player -> source.uniqueId
+            else -> UUID.randomUUID()
+        }
+    }
+
+    private fun assertIdIsNumeric(input: String, source: CommandSource): Int {
+        var id: Int = -1
+        try {
+            id = input.toInt()
+
+        } catch (e: NumberFormatException) {
+            source.sendMessage(translator.fromConfig("id-format-error"))
+        }
+
+        return id
     }
 }
