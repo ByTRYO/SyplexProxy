@@ -27,7 +27,11 @@ class ConfigLoader(private val dataDirectory: Path) {
         if (!dataFile.exists()) {
             val inputStream = javaClass.getResourceAsStream("/config.yml")
             if (inputStream != null) {
-                Files.copy(inputStream, dataFile.toPath())
+                try {
+                    Files.copy(inputStream, dataFile.toPath())
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
         configurationNode = loader.load()
