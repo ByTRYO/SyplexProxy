@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "1.8.20"
     kotlin("kapt") version "1.8.20"
 
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
@@ -16,8 +16,10 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50")
-    implementation("de.chojo.sadu", "sadu", "1.2.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.20")
+    implementation("de.chojo.sadu:sadu:1.3.0")
+    implementation("org.mariadb.jdbc:mariadb-java-client:3.1.3")
     implementation("net.kyori:adventure-text-minimessage:4.13.0")
 
     compileOnly("com.velocitypowered:velocity-api:3.1.1")
@@ -27,13 +29,8 @@ dependencies {
 tasks {
 
     shadowJar {
-        fun relocate(pkg: String) = relocate(pkg, "eu.syplex.proxy.dependency.$pkg")
-        relocate("net.kyori.adventure")
-
-        dependencies {
-            include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
-        }
-
+        enabled = true
+        relocationPrefix = "eu.syplex.proxy"
         archiveFileName.set("Proxy-$version-dev.jar")
     }
 
