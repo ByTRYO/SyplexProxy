@@ -16,29 +16,21 @@ import eu.syplex.proxy.config.PropertyLoader
 import eu.syplex.proxy.util.CommandPool
 import eu.syplex.proxy.util.ComponentTranslator
 import eu.syplex.proxy.util.Notifier
+import ninja.leaping.configurate.ConfigurationNode
 import java.nio.file.Path
 import java.util.logging.Logger
 
 @Plugin(id = "proxy", name = "Proxy", version = "1.0-SNAPSHOT", authors = ["Merry", "ByTRYO"])
 class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logger, @DataDirectory private val dataDirectory: Path) {
 
-    private val translator: ComponentTranslator
-    private val notifier: Notifier
-    private val playerTracker: PlayerTracker
-
-    init {
-        val configurationNode = ConfigLoader(dataDirectory).configurationNode
-        StaticDataLoader.connect(PropertyLoader(configurationNode).loadConnectionProperty())
-
-        translator = ComponentTranslator(configurationNode)
-        notifier = Notifier(proxyServer, translator)
-        playerTracker = PlayerTracker()
-
-        logger.info("Plugin was enabled successfully")
-    }
+    private val configurationNode: ConfigurationNode = ConfigLoader(dataDirectory).configurationNode
+    private val translator: ComponentTranslator = ComponentTranslator(configurationNode)
+    private val notifier: Notifier = Notifier(proxyServer, translator)
+    private val playerTracker: PlayerTracker = PlayerTracker()
 
     @Subscribe
     fun onProxyInitialization(event: ProxyInitializeEvent) {
+//        StaticDataLoader.connect(PropertyLoader(configurationNode).loadConnectionProperty())
         registerCommands()
         registerListener()
     }
