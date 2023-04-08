@@ -92,6 +92,9 @@ kick-notify-with-reason: "&7Das Teammitglied &a%player% &7hat den Spieler &c%tar
 # Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gekickt wurde.
 kick-disconnect: "&cDu wurdest gekickt!"
 
+# Nachricht, welche dem Spieler gesendet wird, wenn die angegebene ID keine Zahl ist
+id-format-error: "&cDie ID muss eine gültige Zahl sein!"
+
 # Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gebannt wurde.
 ban-disconnect: "&cDu wurdest gebannt."
 
