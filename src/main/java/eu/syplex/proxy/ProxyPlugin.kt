@@ -30,7 +30,7 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
 
     @Subscribe
     fun onProxyInitialization(event: ProxyInitializeEvent) {
-//        StaticDataLoader.connect(PropertyLoader(configurationNode).loadConnectionProperty())
+        StaticDataLoader.connect(PropertyLoader(configurationNode).loadConnectionProperty())
         registerCommands()
         registerListener()
     }
