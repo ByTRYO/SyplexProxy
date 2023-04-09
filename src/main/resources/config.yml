@@ -98,6 +98,22 @@ id-format-error: "&cDie ID muss eine gültige Zahl sein!"
 # Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gebannt wurde.
 ban-disconnect: "&cDu wurdest gebannt."
 
+# Nachricht, welche allen Spieler auf dem Netzwerk angezeigt wird, wenn ein spieler ein joinMe erstellt.
+# Placeholder:
+#   - %player% - Ersteller des JoinMes.
+#   - %server% - Server auf dem sich der ersteller des JoinMes befindet.
+joinme-message: "&c%player% &7Spielt gerade auf &c%server%"
+
+# Nachricht, die Clickable ist die gesendet wird beim JoinMe um auf dem Server zu connecten.
+joinme-clickable: "&8[&6Klicke hier um beizutreten&8]"
+
+# Nachricht, welche gesendet wird, wenn ein Fehler während des JoinMes auftritt
+joinme-error: "&cEs ist ein Fehler aufgetreten, versuche es später erneut"
+
+#Zeit in Sekunden wie lange ein Delay für dem JoinMe Command
+joinme-delay: 600
+
+joinme-not-active: "&cEs ist zuzeit kein"
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #
