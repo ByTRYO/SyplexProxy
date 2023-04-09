@@ -7,5 +7,6 @@ object Placeholder {
     const val player = "%player%"
     const val target = "%target%"
     const val reason = "%reason%"
+    const val server = "%server%"
 
 }
