@@ -31,6 +31,10 @@ class ComponentTranslator(private val configurationNode: ConfigurationNode) {
         return LegacyComponentSerializer.legacyAmpersand().deserialize(replaced)
     }
 
+    fun rawWithTwoReplacements(node: String, fP: String, sP: String, fR: String, sR: String): String {
+        return raw(node).replace(fP, fR).replace(sP, sR)
+    }
+
     fun raw(node: String): String {
         return configurationNode.getNode(node).getString(null)
     }
