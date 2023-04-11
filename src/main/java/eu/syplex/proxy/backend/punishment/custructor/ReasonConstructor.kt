@@ -4,6 +4,6 @@ import ninja.leaping.configurate.ConfigurationNode
 
 interface ReasonConstructor<T> {
 
-    fun construct(configurationNode: ConfigurationNode, id: Int): T
+    fun construct(configurationNode: ConfigurationNode, id: Int): T?
 
 }

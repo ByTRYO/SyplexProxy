@@ -21,19 +21,19 @@
 #
 
 # Der Hostname, unter dem die Datenbank erreichbar ist. Kann sowohl eine IP-Adresse, als auch eine Domain sein.
-db-host: "127.0.0.1"
+db-host: "dev.syplex.eu"
 
 # Der Port, auf den die Datenbank hört
 db-port: "3306"
 
 # Der Name der Datenbank, auf die zugegriffen werden soll
-db-database: "proxy"
+db-database: "devtest"
 
 # Der Benutzername des Kontos, welche für den Datenbankzugriff verwendet wird. "root" wird aus Gründen der Sicherheit nicht empfohlen.
-db-username: "root"
+db-username: "merry"
 
 # Das Passwort des Benutzerkontos. Falls nicht gesetzt, bitte die Konfiguration hier leer stehen lassen.
-db-password: ""
+db-password: "JDqoxWvdjwSj8RBaiE855wQ9LJ6y3m4tARN4r3QVQwVVEtD2"
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR MINECRAFT RELEVANT IST!
@@ -122,10 +122,18 @@ unban-url: "https://account.syplex.eu"
 
 # Zusätzliche Zeile zwischen der zweiten und dritten im Bann-Screen, falls der Bann nicht permanent ist
 ban-screen-time-left: "&cVerbleibende Zeit&7: %expires%"
+
+# Nachricht, die gesendet ird, wenn die eingegebene numerische ID nicht gefunden wurde
+# Placeholder:
+#   - %id% - Die ID
+#   - %reason% - Der Name des Banngrundes
+#   - %duration% - Die Länge des Banns
+ban-id-not-found: "&cBann &8» &7%id%: %reason% &8» &e%duration%"
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #
-# Die im Folgenden definierten Längen sind in Millisekunden anzugeben. -1 wird als permanent interpretiert.
+# Die im Folgenden definierten Längen sind in Sekunden anzugeben. -1 wird als permanent interpretiert.
+# Eine Webseite zum Umrechnen von Tagen in Sekunden ist unter der URL https://www.unitjuggler.com/time-umwandeln-von-day-nach-s.html aufrufbar.
 #
 
 # Banngrund mit der ID #1
@@ -173,55 +181,55 @@ ban-reason-14: "Custom Grund-1, änderbar in der Config"
 # Banngrund mit der ID #15
 ban-reason-15: "Custom Grund-2, änderbar in der Config"
 
-# Länge des Banns mit der ID #1 in Millisekunden
-ban-duration-1: 0
+# Länge des Banns mit der ID #1 in Sekunden
+ban-duration-1: -1
 
-# Länge des Banns mit der ID #2 in Millisekunden
-ban-duration-2: 0
+# Länge des Banns mit der ID #2 in Sekunden
+ban-duration-2: 1209600
 
-# Länge des Banns mit der ID #3 in Millisekunden
-ban-duration-3: 0
+# Länge des Banns mit der ID #3 in Sekunden
+ban-duration-3: 604800
 
-# Länge des Banns mit der ID #4 in Millisekunden
-ban-duration-4: 0
+# Länge des Banns mit der ID #4 in Sekunden
+ban-duration-4: 604800
 
-# Länge des Banns mit der ID #5 in Millisekunden
-ban-duration-5: 0
+# Länge des Banns mit der ID #5 in Sekunden
+ban-duration-5: 1814400
 
-# Länge des Banns mit der ID #6 in Millisekunden
-ban-duration-6: 0
+# Länge des Banns mit der ID #6 in Sekunden
+ban-duration-6: 259200
 
-# Länge des Banns mit der ID #7 in Millisekunden
-ban-duration-7: 0
+# Länge des Banns mit der ID #7 in Sekunden
+ban-duration-7: 604800
 
-# Länge des Banns mit der ID #8 in Millisekunden
-ban-duration-8: 0
+# Länge des Banns mit der ID #8 in Sekunden
+ban-duration-8: 604800
 
-# Länge des Banns mit der ID #9 in Millisekunden
-ban-duration-9: 0
+# Länge des Banns mit der ID #9 in Sekunden
+ban-duration-9: -1
 
-# Länge des Banns mit der ID #10 in Millisekunden
-ban-duration-10: 0
+# Länge des Banns mit der ID #10 in Sekunden
+ban-duration-10: -1
 
-# Länge des Banns mit der ID #11 in Millisekunden
-ban-duration-11: 0
+# Länge des Banns mit der ID #11 in Sekunden
+ban-duration-11: 604800
 
-# Länge des Banns mit der ID #12 in Millisekunden
-ban-duration-12: 0
+# Länge des Banns mit der ID #12 in Sekunden
+ban-duration-12: 259200
 
-# Länge des Banns mit der ID #13 in Millisekunden
-ban-duration-13: 0
+# Länge des Banns mit der ID #13 in Sekunden
+ban-duration-13: 259200
 
-# Länge des Banns mit der ID #14 in Millisekunden
-ban-duration-14: 0
+# Länge des Banns mit der ID #14 in Sekunden
+ban-duration-14: -1
 
-# Länge des Banns mit der ID #15 in Millisekunden
-ban-duration-15: 0
+# Länge des Banns mit der ID #15 in Sekunden
+ban-duration-15: -1
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR MUTES RELEVANT IST!
 #
-# Die im Folgenden definierten Längen sind in Millisekunden anzugeben. -1 wird als permanent interpretiert.
+# Die im Folgenden definierten Längen sind in Sekunden anzugeben. -1 wird als permanent interpretiert.
 #
 
 # Mutegrund mit der ID #1
@@ -239,19 +247,19 @@ mute-reason-4: "Verhalten | Respektlos"
 # Mutegrund mit der ID #6
 mute-reason-5: "Verhalten | Asozial"
 
-# Länge des Banns mit der ID #1 in Millisekunden
+# Länge des Banns mit der ID #1 in Sekunden
 mute-duration-1: 0
 
-# Länge des Banns mit der ID #2 in Millisekunden
+# Länge des Banns mit der ID #2 in Sekunden
 mute-duration-2: 0
 
-# Länge des Banns mit der ID #3 in Millisekunden
+# Länge des Banns mit der ID #3 in Sekunden
 mute-duration-3: 0
 
-# Länge des Banns mit der ID #4 in Millisekunden
+# Länge des Banns mit der ID #4 in Sekunden
 mute-duration-4: 0
 
-# Länge des Banns mit der ID #5 in Millisekunden
+# Länge des Banns mit der ID #5 in Sekunden
 mute-duration-5: 0
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
