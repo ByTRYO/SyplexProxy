@@ -50,6 +50,9 @@ no-permission: "&cDazu hast du keine Rechte!"
 # Nachricht, welche gesendet wird, wenn der Befehl nicht durch einen Spieler benutzt wurde.
 no-player: "&cDazu musst du ein Spieler sein!"
 
+# Nachricht, welche gesendet wird, wenn ein abgefragter Spieler nicht gefunden wird
+player-not-existent: "&cDieser Spieler ist nicht bei uns registriert!"
+
 # Nachricht, welche gesendet wird, wenn ein abgefragter Spieler nicht auf dem Server online ist.
 not-online: "&cDieser Spieler ist nicht online!"
 
@@ -76,19 +79,6 @@ kick: "&7Du hast den Spieler &6%player% &cvom Server gekickt."
 #   - %reason% - Der Grund, warum der Spieler gekickt wurde
 kick-with-reason: "&7Du hast den Spieler &6%player% &7wegen &6%reason% &cvom Server gekickt."
 
-# Nachricht, welche an alle Teammitglieder auf dem Server gesendet wird, wenn ein Spieler gekickt wurde
-# Placeholder:
-#   - %player% - Der Name des Teammitglieds
-#   - %target% - Der Name des gekickten Spielers
-kick-notify: "&7Das Teammitglied &a%player% &7hat den Spieler &c%target% vom Server gekickt."
-
-# Nachricht, welche an alle Teammitglieder auf dem Server gesendet wird, wenn ein Spieler gekickt wurde
-# Placeholder:
-#   - %player% - Der Name des Teammitglieds
-#   - %target% - Der Name des gekickten Spielers
-#   - %reason% - Der Grund, weshalb der Spieler gekickt wurde
-kick-notify-with-reason: "&7Das Teammitglied &a%player% &7hat den Spieler &c%target% &7wegen &b%reason% &7vom Server gekickt."
-
 # Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gekickt wurde.
 kick-disconnect: "&cDu wurdest gekickt!"
 
@@ -100,6 +90,9 @@ ban-disconnect: "&cDu wurdest gebannt."
 
 # Nachricht, welche dem Spieler gesendet wird, falls der zu bannende Spieler bereits gebannt ist.
 already-banned: "&cDieser Spieler ist bereits gebannt!"
+
+# Nachricht, welche gesendet wird, wenn ein Spieler nicht gebannt ist.
+not-banned: "&cDieser Spieler ist nicht gebannt!"
 
 # Erste Zeile des Bann-Screens
 # Placeholder:
@@ -129,11 +122,14 @@ ban-screen-time-left: "&cVerbleibende Zeit&7: %expires%"
 #   - %reason% - Der Name des Banngrundes
 #   - %duration% - Die Länge des Banns
 ban-id-not-found: "&cBann &8» &7%id%: %reason% &8» &e%duration%"
+
+# Nachricht, welche gesendet wird, wenn ein Spieler entbannt wurde.
+player-unbanned: "&aDu hast den Spieler &6%player% &aentbannt."
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #
 # Die im Folgenden definierten Längen sind in Sekunden anzugeben. -1 wird als permanent interpretiert.
-# Eine Webseite zum Umrechnen von Tagen in Sekunden ist unter der URL https://www.unitjuggler.com/time-umwandeln-von-day-nach-s.html aufrufbar.
+# Eine Webseite zum Umrechnen von Tagen in Sekunden ist unter der URL https://www.unitjuggler.com/time-umwandeln-von-day-nach-ms.html aufrufbar.
 #
 
 # Banngrund mit der ID #1
@@ -185,7 +181,7 @@ ban-reason-15: "Custom Grund-2, änderbar in der Config"
 ban-duration-1: -1
 
 # Länge des Banns mit der ID #2 in Sekunden
-ban-duration-2: 1209600
+ban-duration-2: 1209600000
 
 # Länge des Banns mit der ID #3 in Sekunden
 ban-duration-3: 604800
