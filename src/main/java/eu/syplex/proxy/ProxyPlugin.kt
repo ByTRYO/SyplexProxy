@@ -9,15 +9,11 @@ import com.velocitypowered.api.proxy.ProxyServer
 import eu.syplex.proxy.backend.PlayerTracker
 import eu.syplex.proxy.backend.database.sadu.StaticDataLoader
 import eu.syplex.proxy.backend.listener.PostLoginListener
-import eu.syplex.proxy.command.BanCommand
-import eu.syplex.proxy.command.KickCommand
-import eu.syplex.proxy.command.PingCommand
-import eu.syplex.proxy.command.YouTubeCommand
+import eu.syplex.proxy.command.*
 import eu.syplex.proxy.config.ConfigLoader
 import eu.syplex.proxy.config.PropertyLoader
 import eu.syplex.proxy.util.CommandPool
 import eu.syplex.proxy.util.ComponentTranslator
-import eu.syplex.proxy.util.Notifier
 import ninja.leaping.configurate.ConfigurationNode
 import java.nio.file.Path
 import java.util.logging.Logger
@@ -27,7 +23,6 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
 
     private val configurationNode: ConfigurationNode = ConfigLoader(dataDirectory).configurationNode
     private val translator: ComponentTranslator = ComponentTranslator(configurationNode)
-    private val notifier: Notifier = Notifier(proxyServer, translator)
     private val playerTracker: PlayerTracker = PlayerTracker()
 
     @Subscribe
@@ -42,11 +37,12 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
         pool.register(PingCommand(translator), "ping")
         pool.register(YouTubeCommand(translator), "youtube", "yt")
         pool.register(KickCommand(proxyServer, translator, playerTracker), "kick")
-        pool.register(BanCommand(proxyServer, translator, configurationNode, playerTracker), "bann")
+        pool.register(BanCommand(proxyServer, translator, configurationNode, playerTracker), "bann", "ban")
+        pool.register(UnbanCommand(translator, playerTracker), "unban")
     }
 
     private fun registerListener() {
-        proxyServer.eventManager.register(this, PostLoginListener(notifier, playerTracker, translator))
+        proxyServer.eventManager.register(this, PostLoginListener(playerTracker, translator))
     }
 
 }

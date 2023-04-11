@@ -3,9 +3,7 @@ package eu.syplex.proxy.command
 import com.velocitypowered.api.command.SimpleCommand
 import com.velocitypowered.api.proxy.ProxyServer
 import eu.syplex.proxy.backend.PlayerTracker
-import eu.syplex.proxy.backend.ProxyPlayer
 import eu.syplex.proxy.util.ComponentTranslator
-import eu.syplex.proxy.util.Notifier
 import eu.syplex.proxy.util.Placeholder
 import net.kyori.adventure.text.Component
 
