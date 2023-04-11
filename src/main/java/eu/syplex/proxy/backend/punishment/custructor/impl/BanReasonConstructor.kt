@@ -9,14 +9,14 @@ import java.time.Instant
 
 object BanReasonConstructor : ReasonConstructor<BanReason> {
 
-    override fun construct(configurationNode: ConfigurationNode, id: Int): BanReason {
-        if (id < 0 || id > 5) throw IdNotFoundException()
-
+    @Throws(IdNotFoundException::class)
+    override fun construct(configurationNode: ConfigurationNode, id: Int): BanReason? {
+        if (id !in 1..15) return null
         return BanReason(getName(configurationNode, id), getExpiration(configurationNode, id))
     }
 
     private fun getName(configurationNode: ConfigurationNode, id: Int): String {
-        return configurationNode.getNode("ban-reason-${id}").getString("Hacking")
+        return configurationNode.getNode("ban-reason-${id}").getString(null)
     }
 
     private fun getExpiration(configurationNode: ConfigurationNode, id: Int): Timestamp? {
