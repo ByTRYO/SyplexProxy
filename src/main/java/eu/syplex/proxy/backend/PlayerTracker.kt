@@ -1,5 +1,7 @@
 package eu.syplex.proxy.backend
 
+import eu.syplex.proxy.backend.impl.OfflineProxyPlayer
+import eu.syplex.proxy.backend.impl.ProxyPlayer
 import java.util.*
 
 class PlayerTracker {
@@ -13,6 +15,17 @@ class PlayerTracker {
 
     fun get(uuid: UUID): ProxyPlayer? {
         return players.getOrDefault(uuid, null)
+    }
+
+    fun get(name: String): ProxiedPlayer {
+        for (proxyPlayer in players.values) {
+            val proxyPlayerName = proxyPlayer.getName().orElse(null) ?: continue
+
+            if (!proxyPlayerName.equals(name, false)) continue
+            return proxyPlayer
+        }
+
+        return OfflineProxyPlayer(name)
     }
 
 }
