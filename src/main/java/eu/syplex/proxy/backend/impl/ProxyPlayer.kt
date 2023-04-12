@@ -1,6 +1,7 @@
-package eu.syplex.proxy.backend
+package eu.syplex.proxy.backend.impl
 
 import com.velocitypowered.api.proxy.Player
+import eu.syplex.proxy.backend.ProxiedPlayer
 import eu.syplex.proxy.backend.database.sadu.StaticQueryAdapter
 import eu.syplex.proxy.backend.punishment.custructor.reason.BanReason
 import eu.syplex.proxy.backend.punishment.custructor.reason.MuteReason
@@ -9,14 +10,17 @@ import eu.syplex.proxy.backend.punishment.entry.impl.BanEntry
 import eu.syplex.proxy.backend.punishment.entry.impl.KickEntry
 import eu.syplex.proxy.backend.punishment.entry.impl.MuteEntry
 import eu.syplex.proxy.util.ComponentTranslator
-import eu.syplex.proxy.util.Notifier
 import net.kyori.adventure.text.TextComponent
 import net.kyori.adventure.text.minimessage.MiniMessage
 import java.sql.Timestamp
 import java.time.Instant
 import java.util.*
 
-class ProxyPlayer(private val player: Player, private val notifier: Notifier, private val translator: ComponentTranslator) {
+class ProxyPlayer(private val player: Player, private val translator: ComponentTranslator) : ProxiedPlayer {
+
+    override fun exists(): Boolean {
+        return true
+    }
 
     fun register() {
         StaticQueryAdapter.builder()
@@ -30,7 +34,7 @@ class ProxyPlayer(private val player: Player, private val notifier: Notifier, pr
             .send()
     }
 
-    fun isBanned(): Boolean {
+    override fun isBanned(): Boolean {
         return StaticQueryAdapter.builder(Boolean::class.java)
             .query("SELECT uuid FROM player_bans WHERE uuid=?;")
             .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }
@@ -38,7 +42,7 @@ class ProxyPlayer(private val player: Player, private val notifier: Notifier, pr
             .firstSync().orElse(false)
     }
 
-    fun isMuted(): Boolean {
+    override fun isMuted(): Boolean {
         return StaticQueryAdapter.builder(Boolean::class.java)
             .query("SELECT uuid FROM player_mutes WHERE uuid=?;")
             .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }
@@ -46,7 +50,7 @@ class ProxyPlayer(private val player: Player, private val notifier: Notifier, pr
             .firstSync().orElse(false)
     }
 
-    fun ban(uid: UUID, reason: BanReason, id: String) {
+    override fun ban(uid: UUID, reason: BanReason, id: String) {
         StaticQueryAdapter.builder()
             .query("INSERT INTO player_bans (uuid, executor_uuid, expires, reason, ban_uid) VALUES (?, ?, ?, ?, ?);")
             .parameter { stmt ->
@@ -60,11 +64,10 @@ class ProxyPlayer(private val player: Player, private val notifier: Notifier, pr
             .send()
 
         History.createEntry(player.uniqueId, BanEntry(player.uniqueId, Timestamp.from(Instant.now()), reason.expires, reason.name, id))
-
         player.disconnect(translator.fromConfig("ban-disconnect"))
     }
 
-    fun mute(uid: UUID, reason: MuteReason, id: String) {
+    override fun mute(uid: UUID, reason: MuteReason, id: String) {
         StaticQueryAdapter.builder()
             .query("INSERT INTO player_mutes (uuid, executor_uuid, expires, reason, mute_uid) VALUES (?, ?, ?, ?, ?);")
             .parameter { stmt ->
@@ -78,7 +81,6 @@ class ProxyPlayer(private val player: Player, private val notifier: Notifier, pr
             .send()
 
         History.createEntry(player.uniqueId, MuteEntry(player.uniqueId, Timestamp.from(Instant.now()), reason.expires, reason.name, id))
-        TODO("Implement notification")
     }
 
     fun kick(reason: TextComponent) {
@@ -87,10 +89,9 @@ class ProxyPlayer(private val player: Player, private val notifier: Notifier, pr
         val translated = MiniMessage.miniMessage().stripTags(reason.content())
 
         History.createEntry(player.uniqueId, KickEntry(player.uniqueId, Timestamp.from(Instant.now()), translated))
-        notifier.notifyKickWithReason(player, translated)
     }
 
-    fun unban() {
+    override fun unban() {
         StaticQueryAdapter.builder()
             .query("DELETE FROM player_bans WHERE uuid=?;")
             .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }
@@ -98,7 +99,20 @@ class ProxyPlayer(private val player: Player, private val notifier: Notifier, pr
             .send()
     }
 
-    fun unmute() {
+    override fun unban(player: Player) {
+        unban()
+
+        StaticQueryAdapter.builder()
+            .query("INSERT INTO player_unbans (uuid, executor_uuid) VALUES (?, ?);")
+            .parameter { stmt ->
+                stmt.setString(this.player.uniqueId.toString())
+                stmt.setString(player.uniqueId.toString())
+            }
+            .insert()
+            .send()
+    }
+
+    override fun unmute() {
         StaticQueryAdapter.builder()
             .query("DELETE FROM player_mutes WHERE uuid=?;")
             .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }
@@ -118,6 +132,14 @@ class ProxyPlayer(private val player: Player, private val notifier: Notifier, pr
 
                 BanEntry(player.uniqueId, date, expires, reason, id)
             }
+            .firstSync()
+    }
+
+    fun getName(): Optional<String> {
+        return StaticQueryAdapter.builder(String::class.java)
+            .query("SELECT name FROM players, player_bans WHERE players.uuid = player_bans.uuid AND players.uuid = ?;")
+            .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }
+            .readRow { row -> row.getString("name") }
             .firstSync()
     }
 

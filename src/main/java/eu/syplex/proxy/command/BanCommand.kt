@@ -21,6 +21,11 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
         val source = invocation.source()
         val args = invocation.arguments()
 
+        if (source !is Player) {
+            source.sendMessage(translator.fromConfig("no-player"))
+            return
+        }
+
         if (args.isEmpty() || args.size == 1) {
             source.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "ban <Name> <ID>"))
             return
@@ -65,7 +70,7 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
         val args = invocation.arguments()
 
         if (args.size == 1) return CompletableFuture.completedFuture(StringUtil.copyPartialMatches(args[0], collectAllPlayerNames(), LinkedList()))
-        else if (args.size == 2) return CompletableFuture.completedFuture(StringUtil.copyPartialMatches(args[1], arrayListOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"), LinkedList()))
+        else if (args.size == 2) return CompletableFuture.completedFuture(StringUtil.copyPartialMatches(args[1], arrayListOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"), LinkedList()))
 
         return CompletableFuture.completedFuture(Collections.emptyList())
     }
@@ -73,7 +78,7 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
     private fun toDays(duration: Long): String {
         if (duration == -1L) return "Permanent"
 
-        val days = TimeUnit.SECONDS.toDays(duration)
+        val days = TimeUnit.MILLISECONDS.toDays(duration)
         return if (days == 1L) "1 Tag" else "$days Tage"
     }
 
