@@ -67,6 +67,7 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
         }
 
         proxyPlayer.ban(getUUID(source), reason, "#${ShortsConstructor.construct()}")
+        source.sendMessage(translator.fromConfigWithReplacement("ban-banned", Placeholder.player, target.username))
     }
 
     override fun suggestAsync(invocation: SimpleCommand.Invocation): CompletableFuture<MutableList<String>> {

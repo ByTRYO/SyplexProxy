@@ -88,6 +88,9 @@ id-format-error: "&cDie ID muss eine gültige Zahl sein!"
 # Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gebannt wurde.
 ban-disconnect: "&cDu wurdest gebannt."
 
+# Nachricht, die gesendet wird, wenn ein Spieler gebannt wurde
+ban-banned: "&aDu hast &c%player% &agebannt."
+
 # Nachricht, welche dem Spieler gesendet wird, falls der zu bannende Spieler bereits gebannt ist.
 already-banned: "&cDieser Spieler ist bereits gebannt!"
 
@@ -125,6 +128,22 @@ ban-id-not-found: "&cBann &8» &7%id%: %reason% &8» &e%duration%"
 
 # Nachricht, welche gesendet wird, wenn ein Spieler entbannt wurde.
 player-unbanned: "&aDu hast den Spieler &6%player% &aentbannt."
+
+# Nachricht, die gesendet ird, wenn die eingegebene numerische ID nicht gefunden wurde
+# Placeholder:
+#   - %id% - Die ID
+#   - %reason% - Der Name des Mutegrunds
+#   - %duration% - Die Länge des Mutes
+mute-id-not-found: "&cMute &8» &7%id%: %reason% &8» &e%duration%"
+
+# Nachricht, welche dem Spieler gesendet wird, falls der zu mutende Spieler bereits gemutet ist.
+already-muted: "&cDieser Spieler ist bereits gebannt!"
+
+# Nachricht, welche gesendet wird, wenn ein Spieler nicht gemutet ist.
+not-muted: "&cDieser Spieler ist nicht gebannt!"
+
+# Nachricht, die gesendet wird, wenn ein Spieler gemutet wurde
+mute-muted: "&aDu hast &c%player% &agemutet."
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #
@@ -184,7 +203,7 @@ ban-duration-1: -1
 ban-duration-2: 1209600000
 
 # Länge des Banns mit der ID #3 in Sekunden
-ban-duration-3: 604800
+ban-duration-3: 60480000
 
 # Länge des Banns mit der ID #4 in Sekunden
 ban-duration-4: 604800
@@ -244,19 +263,19 @@ mute-reason-4: "Verhalten | Respektlos"
 mute-reason-5: "Verhalten | Asozial"
 
 # Länge des Banns mit der ID #1 in Sekunden
-mute-duration-1: 0
+mute-duration-1: 60480000
 
 # Länge des Banns mit der ID #2 in Sekunden
-mute-duration-2: 0
+mute-duration-2: 60480000
 
 # Länge des Banns mit der ID #3 in Sekunden
-mute-duration-3: 0
+mute-duration-3: 60480000
 
 # Länge des Banns mit der ID #4 in Sekunden
-mute-duration-4: 0
+mute-duration-4: 60480000
 
 # Länge des Banns mit der ID #5 in Sekunden
-mute-duration-5: 0
+mute-duration-5: 60480000
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR REPORTS RELEVANT IST!
