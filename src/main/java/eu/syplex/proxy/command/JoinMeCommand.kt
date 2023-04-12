@@ -12,7 +12,7 @@ import java.net.URL
 import javax.imageio.ImageIO
 
 
-class JoinMeCommand(private val translator: ComponentTranslator, private val validator: JoinMeValidator) : SimpleCommand {
+class JoinMeCommand(private val translator: ComponentTranslator, private val validator: JoinMeValidator, private val server: ProxyServer) : SimpleCommand {
     override fun execute(invocation: SimpleCommand.Invocation) {
         val args = invocation.arguments()
         val sender = invocation.source()
@@ -22,7 +22,7 @@ class JoinMeCommand(private val translator: ComponentTranslator, private val val
             return
         }
 
-        if(!sender.hasPermission("proxy.command.joinme")) {
+        if (!sender.hasPermission("proxy.command.joinme")) {
             sender.sendMessage(translator.fromConfig("no-permission"))
             return
         }
@@ -40,11 +40,11 @@ class JoinMeCommand(private val translator: ComponentTranslator, private val val
         val connection = sender.currentServer.get()
         val img = ImageIO.read(URL("https://crafatar.com/avatars/" + sender.uniqueId.toString() + ".png")) //Read the Image from API-Server
 
-        ImageMessage(img, 8, '\u2588').appendText(
+        ImageMessage(img, 8, '\u2588', server).appendText(
             "", "", "",
             translator.rawWithTwoReplacements("joinme-message", Placeholder.player, Placeholder.server, sender.username, connection.serverInfo.name),
             "<click:run_command:/accept>" + translator.raw("joinme-clickable")
-        ).sendToPlayer(sender)
+        ).sendToAllPlayer()
 
         validator.createJoinMe(connection.server)
     }
