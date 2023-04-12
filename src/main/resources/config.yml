@@ -137,13 +137,16 @@ player-unbanned: "&aDu hast den Spieler &6%player% &aentbannt."
 mute-id-not-found: "&cMute &8» &7%id%: %reason% &8» &e%duration%"
 
 # Nachricht, welche dem Spieler gesendet wird, falls der zu mutende Spieler bereits gemutet ist.
-already-muted: "&cDieser Spieler ist bereits gebannt!"
+already-muted: "&cDieser Spieler ist bereits gemutet!"
 
 # Nachricht, welche gesendet wird, wenn ein Spieler nicht gemutet ist.
-not-muted: "&cDieser Spieler ist nicht gebannt!"
+not-muted: "&cDieser Spieler ist nicht gemutet!"
 
 # Nachricht, die gesendet wird, wenn ein Spieler gemutet wurde
 mute-muted: "&aDu hast &c%player% &agemutet."
+
+# Nachricht, welche gesendet wird, wenn ein Spieler entmutet wurde.
+player-unmuted: "&aDu hast den Spieler &6%player% &aentmutet."
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #
@@ -206,19 +209,19 @@ ban-duration-2: 1209600000
 ban-duration-3: 60480000
 
 # Länge des Banns mit der ID #4 in Sekunden
-ban-duration-4: 604800
+ban-duration-4: 60480000
 
 # Länge des Banns mit der ID #5 in Sekunden
-ban-duration-5: 1814400
+ban-duration-5: 18144000
 
 # Länge des Banns mit der ID #6 in Sekunden
-ban-duration-6: 259200
+ban-duration-6: 25920000
 
 # Länge des Banns mit der ID #7 in Sekunden
-ban-duration-7: 604800
+ban-duration-7: 60480000
 
 # Länge des Banns mit der ID #8 in Sekunden
-ban-duration-8: 604800
+ban-duration-8: 60480000
 
 # Länge des Banns mit der ID #9 in Sekunden
 ban-duration-9: -1
@@ -227,13 +230,13 @@ ban-duration-9: -1
 ban-duration-10: -1
 
 # Länge des Banns mit der ID #11 in Sekunden
-ban-duration-11: 604800
+ban-duration-11: 60480000
 
 # Länge des Banns mit der ID #12 in Sekunden
-ban-duration-12: 259200
+ban-duration-12: 25920000
 
 # Länge des Banns mit der ID #13 in Sekunden
-ban-duration-13: 259200
+ban-duration-13: 25920000
 
 # Länge des Banns mit der ID #14 in Sekunden
 ban-duration-14: -1
