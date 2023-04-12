@@ -12,5 +12,6 @@ object Placeholder {
     const val url = "%url%"
     const val expires = "%expires%"
     const val id = "%id%"
+    const val message = "%message%"
 
 }

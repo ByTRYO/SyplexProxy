@@ -42,6 +42,7 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
         pool.register(UnbanCommand(translator, playerTracker), "unban")
         pool.register(MuteCommand(translator, proxyServer, playerTracker, configurationNode), "mute")
         pool.register(UnmuteCommand(translator, playerTracker), "unmute")
+        pool.register(TeamChatCommand(proxyServer, translator), "teamchat", "tc")
     }
 
     private fun registerListener() {
