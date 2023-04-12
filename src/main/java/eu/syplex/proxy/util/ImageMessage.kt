@@ -1,6 +1,7 @@
 package eu.syplex.proxy.util
 
 import com.velocitypowered.api.proxy.Player
+import com.velocitypowered.api.proxy.ProxyServer
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
@@ -8,7 +9,7 @@ import java.awt.geom.AffineTransform
 import java.awt.image.AffineTransformOp
 import java.awt.image.BufferedImage
 
-class ImageMessage(image: BufferedImage, height: Int, imgChar: Char) {
+class ImageMessage(image: BufferedImage, height: Int, imgChar: Char, private val server: ProxyServer) {
     private val transparentChar = ' '
     private var lines: Array<String?>
 
@@ -103,6 +104,15 @@ class ImageMessage(image: BufferedImage, height: Int, imgChar: Char) {
             if (line != null) {
                 val mm = MiniMessage.miniMessage()
                 player.sendMessage(mm.deserialize(line))
+            }
+        }
+    }
+
+    fun sendToAllPlayer() {
+        for (line in lines) {
+            if (line != null) {
+                val mm = MiniMessage.miniMessage()
+                server.allPlayers.forEach { player -> player.sendMessage(mm.deserialize(line)) }
             }
         }
     }
