@@ -3,6 +3,7 @@ package eu.syplex.proxy
 import com.google.inject.Inject
 import com.velocitypowered.api.event.Subscribe
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent
+import com.velocitypowered.api.plugin.Dependency
 import com.velocitypowered.api.plugin.Plugin
 import com.velocitypowered.api.plugin.annotation.DataDirectory
 import com.velocitypowered.api.proxy.ProxyServer
@@ -23,7 +24,7 @@ import ninja.leaping.configurate.ConfigurationNode
 import java.nio.file.Path
 import java.util.logging.Logger
 
-@Plugin(id = "proxy", name = "Proxy", version = "1.0-SNAPSHOT", authors = ["Merry", "ByTRYO"])
+@Plugin(id = "proxy", name = "Proxy", version = "1.0-SNAPSHOT", authors = ["Merry", "ByTRYO"], dependencies = [Dependency(id = "cloudnet-bridge", optional = false)])
 class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logger, @DataDirectory private val dataDirectory: Path) {
 
     private val configurationNode: ConfigurationNode = ConfigLoader(dataDirectory).configurationNode
@@ -43,7 +44,7 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
         val pool = CommandPool(this)
         pool.register(PingCommand(translator), "ping")
         pool.register(YouTubeCommand(translator), "youtube", "yt")
-        pool.register(JoinMeCommand(translator, joinMeValidator), "joinme")
+        pool.register(JoinMeCommand(translator, joinMeValidator, proxyServer), "joinme")
         pool.register(JoinMeAcceptCommand(translator, joinMeValidator), "accept")
     }
 
