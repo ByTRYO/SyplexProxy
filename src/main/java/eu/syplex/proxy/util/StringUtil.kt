@@ -4,7 +4,6 @@ import java.util.*
 
 object StringUtil {
 
-
     fun <T : LinkedList<String>> copyPartialMatches(token: String, originals: Iterable<String>, collection: T): T {
         for (string in originals) {
             if (startsWithIgnoreCase(string, token)) {
