@@ -1,0 +1,13 @@
+
+# ███╗░░██╗███████╗░██╗░░░░░░░██╗░██████╗
+# ████╗░██║██╔════╝░██║░░██╗░░██║██╔════╝
+# ██╔██╗██║█████╗░░░╚██╗████╗██╔╝╚█████╗░
+# ██║╚████║██╔══╝░░░░████╔═████║░░╚═══██╗
+# ██║░╚███║███████╗░░╚██╔╝░╚██╔╝░██████╔╝
+# ╚═╝░░╚══╝╚══════╝░░░╚═╝░░░╚═╝░░╚═════╝░
+
+
+# Dies ist die zentrale News-datei des Proxy-Plugins made by Merry & Tobi.
+# Diese Konfigurationsdatei verwendet legacy Farbcodes zur Darstellung von Farben. Bei Bedarf ist eine Implementierung der Farbcodes von
+
+news:
