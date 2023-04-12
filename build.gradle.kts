@@ -20,9 +20,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.20")
     implementation("de.chojo.sadu:sadu:1.3.0")
     implementation("org.mariadb.jdbc:mariadb-java-client:3.1.3")
-    implementation("net.kyori:adventure-text-minimessage:4.13.0")
-    implementation("eu.cloudnetservice.cloudnet:bridge:4.0.0-RC8")
-    implementation("eu.cloudnetservice.cloudnet:driver:4.0.0-RC8")
+    implementation("net.kyori:adventure-text-minimessage:4.13.1")
+
+    compileOnly("eu.cloudnetservice.cloudnet:bridge:4.0.0-RC8")
+    compileOnly("eu.cloudnetservice.cloudnet:driver:4.0.0-RC8")
 
     compileOnly("com.velocitypowered:velocity-api:3.1.1")
     kapt("com.velocitypowered:velocity-api:3.1.1")
