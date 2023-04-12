@@ -113,7 +113,8 @@ joinme-error: "&cEs ist ein Fehler aufgetreten, versuche es später erneut"
 #Zeit in Sekunden wie lange ein Delay für dem JoinMe Command
 joinme-delay: 600
 
-joinme-not-active: "&cEs ist zuzeit kein"
+joinme-not-active: "&cEs ist zurzeit kein JoinMe aktiv"
+
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #
