@@ -2,8 +2,6 @@ package eu.syplex.proxy.command
 
 import com.velocitypowered.api.command.SimpleCommand
 import com.velocitypowered.api.proxy.Player
-import eu.cloudnetservice.driver.registry.ServiceRegistry
-import eu.cloudnetservice.modules.bridge.node.CloudNetBridgeModule
 import eu.cloudnetservice.modules.bridge.player.PlayerManager
 import eu.syplex.proxy.util.ComponentTranslator
 import eu.syplex.proxy.util.JoinMeValidator
@@ -30,7 +28,7 @@ class JoinMeAcceptCommand(private val translator: ComponentTranslator, private v
             return
         }
 
-        val manager = ServiceRegistry.first(PlayerManager::class.java) ?: return
+        val manager = eu.cloudnetservice.driver.registry.ServiceRegistry.first(PlayerManager::class.java) ?: return
         manager.onlinePlayer(sender.uniqueId)?.playerExecutor()?.connect(validator.getServer().serverInfo.name)
 
     }
