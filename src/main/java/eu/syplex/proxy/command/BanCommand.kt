@@ -39,10 +39,13 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
         }
 
         val target = optionalPlayer.get()
-        val proxyPlayer = playerTracker.get(target.uniqueId)
+        val proxyPlayer = playerTracker.get(target.username)
         val id = assertIdIsNumeric(args[1], source)
 
-        if (proxyPlayer == null) return
+        if (!proxyPlayer.exists()) {
+            source.sendMessage(translator.fromConfig("player-not-existent"))
+            return
+        }
 
         if (proxyPlayer.isBanned()) {
             source.sendMessage(translator.fromConfig("already-banned"))
