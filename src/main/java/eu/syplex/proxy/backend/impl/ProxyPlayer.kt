@@ -120,6 +120,19 @@ class ProxyPlayer(private val player: Player, private val translator: ComponentT
             .send()
     }
 
+    override fun unmute(player: Player) {
+        unmute()
+
+        StaticQueryAdapter.builder()
+            .query("INSERT INTO player_unmutes (uuid, executor_uuid) VALUES (?, ?);")
+            .parameter { stmt ->
+                stmt.setString(this.player.uniqueId.toString())
+                stmt.setString(player.uniqueId.toString())
+            }
+            .insert()
+            .send()
+    }
+
     fun getBanEntry(): Optional<BanEntry> {
         return StaticQueryAdapter.builder(BanEntry::class.java)
             .query("SELECT * FROM player_bans WHERE uuid=?;")
@@ -131,6 +144,21 @@ class ProxyPlayer(private val player: Player, private val translator: ComponentT
                 val id = row.getString("ban_uid")
 
                 BanEntry(player.uniqueId, date, expires, reason, id)
+            }
+            .firstSync()
+    }
+
+    fun getMuteEntry(): Optional<MuteEntry> {
+        return StaticQueryAdapter.builder(MuteEntry::class.java)
+            .query("SELECT * FROM player_mutes WHERE uuid=?;")
+            .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }
+            .readRow { row ->
+                val date = row.getTimestamp("date")
+                val expires = row.getTimestamp("expires")
+                val reason = row.getString("reason")
+                val id = row.getString("mute_uid")
+
+                MuteEntry(player.uniqueId, date, expires, reason, id)
             }
             .firstSync()
     }
