@@ -1,6 +1,6 @@
-package eu.syplex.proxy.backend.punishment.impl
+package eu.syplex.proxy.backend.punishment.entry.impl
 
-import eu.syplex.proxy.backend.punishment.Entry
+import eu.syplex.proxy.backend.punishment.entry.Entry
 import java.sql.Timestamp
 import java.util.*
 
