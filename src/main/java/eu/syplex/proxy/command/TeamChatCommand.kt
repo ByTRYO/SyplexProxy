@@ -17,6 +17,11 @@ class TeamChatCommand(private val proxyServer: ProxyServer, private val translat
             return
         }
 
+        if (!source.hasPermission("proxy.command.teamchat")) {
+            source.sendMessage(translator.fromConfig("no-permission"))
+            return
+        }
+
         if (args.isEmpty()) {
             source.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "teamchat <Nachricht>"))
             return

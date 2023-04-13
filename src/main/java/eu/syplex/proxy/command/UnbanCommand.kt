@@ -17,6 +17,11 @@ class UnbanCommand(private val translator: ComponentTranslator, private val trac
             return
         }
 
+        if (!source.hasPermission("proxy.command.unban")) {
+            source.sendMessage(translator.fromConfig("no-permission"))
+            return
+        }
+
         if (args.size != 1) {
             source.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "unban <Name>"))
             return
