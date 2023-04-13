@@ -23,6 +23,9 @@ dependencies {
     implementation("net.kyori:adventure-text-minimessage:4.13.1")
 
     compileOnly("com.velocitypowered:velocity-api:3.1.1")
+    compileOnly("eu.cloudnetservice.cloudnet:bridge:4.0.0-RC8")
+    compileOnly("eu.cloudnetservice.cloudnet:driver:4.0.0-RC8")
+
     kapt("com.velocitypowered:velocity-api:3.1.1")
 }
 
