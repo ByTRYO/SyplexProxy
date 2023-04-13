@@ -16,8 +16,8 @@ import eu.syplex.proxy.config.PropertyLoader
 import eu.syplex.proxy.util.CommandPool
 import eu.syplex.proxy.util.ComponentTranslator
 import eu.syplex.proxy.util.JoinMeValidator
-import eu.syplex.proxy.util.news.NewsFetcher
-import eu.syplex.proxy.util.news.NewsLoader
+import eu.syplex.proxy.config.news.NewsFetcher
+import eu.syplex.proxy.config.news.NewsLoader
 import ninja.leaping.configurate.ConfigurationNode
 import java.nio.file.Path
 import java.util.logging.Logger
@@ -52,6 +52,7 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
         pool.register(JoinMeCommand(translator, validator, proxyServer), "joinme")
         pool.register(JoinMeAcceptCommand(translator, validator), "accept")
         pool.register(NewsCommand(translator, newsFetcher), "news")
+        pool.register(HelpCommand(translator), "help", "hilfe", "?")
     }
 
     private fun registerListener() {
