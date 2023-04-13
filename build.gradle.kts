@@ -24,6 +24,7 @@ dependencies {
 
     compileOnly("eu.cloudnetservice.cloudnet:bridge:4.0.0-RC8")
     compileOnly("eu.cloudnetservice.cloudnet:driver:4.0.0-RC8")
+    compileOnly("eu.cloudnetservice.cloudnet:wrapper-jvm:4.0.0-RC8")
 
     compileOnly("com.velocitypowered:velocity-api:3.1.1")
     kapt("com.velocitypowered:velocity-api:3.1.1")
