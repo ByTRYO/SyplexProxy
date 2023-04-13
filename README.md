@@ -17,5 +17,5 @@
 - [ ] Help Befehl
 - [x] YouTube Befehl
 - [x] Ping Befehl
-- [ ] News Befehl
+- [x] News Befehl
 - [ ] Ban-history Befehl 
