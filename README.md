@@ -14,7 +14,7 @@
 - [ ] Check Befehl
 - [x] JoinMe Befehl
 - [x] TeamChat Befehl
-- [ ] Help Befehl
+- [x] Help Befehl
 - [x] YouTube Befehl
 - [x] Ping Befehl
 - [x] News Befehl
