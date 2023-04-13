@@ -28,9 +28,9 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
     private val configurationNode: ConfigurationNode = ConfigLoader(dataDirectory).configurationNode
     private val translator: ComponentTranslator = ComponentTranslator(configurationNode)
     private val playerTracker: PlayerTracker = PlayerTracker()
-    private val validator : JoinMeValidator = JoinMeValidator(this, proxyServer, translator)
-    private val newsLoader : ConfigurationNode = NewsLoader(dataDirectory).configurationNode
-    private val newsFetcher : NewsFetcher = NewsFetcher(newsLoader)
+    private val validator: JoinMeValidator = JoinMeValidator(this, proxyServer, translator)
+    private val newsLoader: ConfigurationNode = NewsLoader(dataDirectory).configurationNode
+    private val newsFetcher: NewsFetcher = NewsFetcher(newsLoader)
 
     @Subscribe
     fun onProxyInitialization(event: ProxyInitializeEvent) {
@@ -53,6 +53,7 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
         pool.register(JoinMeAcceptCommand(translator, validator), "accept")
         pool.register(NewsCommand(translator, newsFetcher), "news")
         pool.register(HelpCommand(translator), "help", "hilfe", "?")
+        pool.register(CheckCommand(translator, playerTracker), "check")
     }
 
     private fun registerListener() {
