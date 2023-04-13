@@ -1,6 +1,5 @@
-package eu.syplex.proxy.util
+package eu.syplex.proxy.util.news
 
-import com.google.common.reflect.TypeToken
 import ninja.leaping.configurate.ConfigurationNode
 import ninja.leaping.configurate.loader.ConfigurationLoader
 import ninja.leaping.configurate.yaml.YAMLConfigurationLoader
@@ -9,13 +8,11 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 
-
-class NewsFile(private val dataDirectory: Path) {
-
-    private val dataFile: File = File(dataDirectory.toFile(), "config.yml")
+class NewsLoader(private val dataDirectory: Path) {
+    private val dataFile: File = File(dataDirectory.toFile(), "news.yml")
     private val loader: ConfigurationLoader<ConfigurationNode>
 
-    private lateinit var configurationNode: ConfigurationNode
+    lateinit var configurationNode: ConfigurationNode
 
     init {
         loader = YAMLConfigurationLoader.builder()
@@ -39,9 +36,4 @@ class NewsFile(private val dataDirectory: Path) {
         }
         configurationNode = loader.load()
     }
-
-    private fun getChanges() {
-        configurationNode.getNode("news").getList(TypeToken.of(String.Companion::class.java))
-    }
-
 }
