@@ -153,6 +153,24 @@ player-unmuted: "&aDu hast den Spieler &6%player% &aentmutet."
 #   - %player% - Der Name des Spielers, der die Nachricht geschickt hat
 #   - %message% - Die Nachricht
 teamchat: "&7[&5Team&7] &3%player% &8» &7%message%"
+
+# Nachricht, welche allen Spieler auf dem Netzwerk angezeigt wird, wenn ein spieler ein joinMe erstellt.
+# Placeholder:
+#   - %player% - Ersteller des JoinMes.
+#   - %server% - Server auf dem sich der ersteller des JoinMes befindet.
+joinme-message: "&c%player% &7Spielt gerade auf &c%server%"
+
+# Nachricht, die Clickable ist die gesendet wird beim JoinMe um auf dem Server zu connecten.
+joinme-clickable: "&8[&6Klicke hier um beizutreten&8]"
+
+# Nachricht, welche gesendet wird, wenn ein Fehler während des JoinMes auftritt.
+joinme-error: "&cEs ist ein Fehler aufgetreten, versuche es später erneut"
+
+#Zeit in Sekunden wie lange ein Delay für dem JoinMe Command.
+joinme-delay: 30
+
+#Nachricht, wenn ein Spieler ausserhalb eines JoinMes versucht eines anzunehmen.
+joinme-not-active: "&cEs ist zurzeit kein JoinMe aktiv"
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #
