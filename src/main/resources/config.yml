@@ -171,6 +171,16 @@ joinme-delay: 30
 
 #Nachricht, wenn ein Spieler ausserhalb eines JoinMes versucht eines anzunehmen.
 joinme-not-active: "&cEs ist zurzeit kein JoinMe aktiv"
+
+#Nachrichten, die dem Spieler gesendet werden, wenn er Hilfe braucht.
+help:
+  - "&8←——————————––––‹ &eHilfe &8›——————————––––→"
+  - " "
+  - "&3Bsp 1 &8| &aVerwendung für XYZ"
+  - "&3Bsp 2 &8| &aVerwendung für XYZ"
+  - "&3Bsp 3 &8| &aVerwendung für XYZ"
+  - " "
+  - "&8←——————————––––‹ &eHilfe &8›——————————––––→"
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #
