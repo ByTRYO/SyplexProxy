@@ -26,6 +26,11 @@ class MuteCommand(private val translator: ComponentTranslator, private val proxy
             return
         }
 
+        if (!source.hasPermission("proxy.command.mute")) {
+            source.sendMessage(translator.fromConfig("no-permission"))
+            return
+        }
+
         if (args.isEmpty() || args.size == 1) {
             source.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "mute <Name> <ID>"))
             return

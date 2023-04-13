@@ -14,6 +14,11 @@ class KickCommand(private val server: ProxyServer, private val translator: Compo
         val sender = invocation.source()
         val args = invocation.arguments()
 
+        if (!sender.hasPermission("proxy.command.kick")) {
+            sender.sendMessage(translator.fromConfig("no-permission"))
+            return
+        }
+
         if (args.isEmpty()) { //Check for a valid syntax
             sender.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "kick <Name> <Grund>"))
             return

@@ -26,6 +26,11 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
             return
         }
 
+        if (!source.hasPermission("proxy.command.ban")) {
+            source.sendMessage(translator.fromConfig("no-permission"))
+            return
+        }
+
         if (args.isEmpty() || args.size == 1) {
             source.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "ban <Name> <ID>"))
             return

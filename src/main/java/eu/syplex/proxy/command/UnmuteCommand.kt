@@ -17,6 +17,11 @@ class UnmuteCommand(private val translator: ComponentTranslator, private val pla
             return
         }
 
+        if (!source.hasPermission("proxy.command.unmute")) {
+            source.sendMessage(translator.fromConfig("no-permission"))
+            return
+        }
+
         if (args.size != 1) {
             source.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "unmute <Name>"))
             return
