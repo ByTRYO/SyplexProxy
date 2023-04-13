@@ -19,6 +19,8 @@ interface ProxiedPlayer {
 
     fun unmute()
 
+    fun unmute(player: Player)
+
     fun isBanned(): Boolean
 
     fun isMuted(): Boolean

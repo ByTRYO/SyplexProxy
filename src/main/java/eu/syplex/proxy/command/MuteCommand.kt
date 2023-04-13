@@ -6,7 +6,7 @@ import com.velocitypowered.api.proxy.Player
 import com.velocitypowered.api.proxy.ProxyServer
 import eu.syplex.proxy.backend.PlayerTracker
 import eu.syplex.proxy.backend.punishment.custructor.ShortsConstructor
-import eu.syplex.proxy.backend.punishment.custructor.impl.BanReasonConstructor
+import eu.syplex.proxy.backend.punishment.custructor.impl.MuteReasonConstructor
 import eu.syplex.proxy.util.ComponentTranslator
 import eu.syplex.proxy.util.Placeholder
 import eu.syplex.proxy.util.StringUtil
@@ -15,7 +15,7 @@ import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 
-class BanCommand(private val proxyServer: ProxyServer, private val translator: ComponentTranslator, private val configurationNode: ConfigurationNode, private val playerTracker: PlayerTracker) : SimpleCommand {
+class MuteCommand(private val translator: ComponentTranslator, private val proxyServer: ProxyServer, private val playerTracker: PlayerTracker, private val configurationNode: ConfigurationNode) : SimpleCommand {
 
     override fun execute(invocation: SimpleCommand.Invocation) {
         val source = invocation.source()
@@ -27,11 +27,12 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
         }
 
         if (args.isEmpty() || args.size == 1) {
-            source.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "ban <Name> <ID>"))
+            source.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "mute <Name> <ID>"))
             return
         }
 
-        val optionalPlayer = proxyServer.getPlayer(args[0])
+        val name = args[0]
+        val optionalPlayer = proxyServer.getPlayer(name)
 
         if (!optionalPlayer.isPresent) {
             source.sendMessage(translator.fromConfig("not-online"))
@@ -39,42 +40,48 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
         }
 
         val target = optionalPlayer.get()
+
+        if (!optionalPlayer.isPresent) {
+            source.sendMessage(translator.fromConfig("not-online"))
+            return
+        }
+
         val proxyPlayer = playerTracker.get(target.username)
-        val id = assertIdIsNumeric(args[1], source)
 
         if (!proxyPlayer.exists()) {
             source.sendMessage(translator.fromConfig("player-not-existent"))
             return
         }
 
-        if (proxyPlayer.isBanned()) {
-            source.sendMessage(translator.fromConfig("already-banned"))
+        if(proxyPlayer.isMuted()) {
+            source.sendMessage(translator.fromConfig("already-muted"))
             return
         }
 
-        val reason = BanReasonConstructor.construct(configurationNode, id)
+        val id = assertIdIsNumeric(args[1], source)
+        val reason = MuteReasonConstructor.construct(configurationNode, id)
 
         if (reason == null) {
-            for (i in 1..15) {
+            for (i in 1..5) {
                 source.sendMessage(
                     translator.fromConfigWithThreeReplacements(
-                        "ban-id-not-found", Placeholder.id, Placeholder.reason, Placeholder.duration, i.toString(),
-                        translator.raw("ban-reason-$i"), toDays(translator.raw("ban-duration-$i").toLong())
+                        "mute-id-not-found", Placeholder.id, Placeholder.reason, Placeholder.duration, i.toString(),
+                        translator.raw("mute-reason-$i"), toDays(translator.raw("mute-duration-$i").toLong())
                     )
                 )
             }
             return
         }
 
-        proxyPlayer.ban(getUUID(source), reason, "#${ShortsConstructor.construct()}")
-        source.sendMessage(translator.fromConfigWithReplacement("ban-banned", Placeholder.player, target.username))
+        proxyPlayer.mute(source.uniqueId, reason, "#${ShortsConstructor.construct()}")
+        source.sendMessage(translator.fromConfigWithReplacement("mute-muted", Placeholder.player, name))
     }
 
     override fun suggestAsync(invocation: SimpleCommand.Invocation): CompletableFuture<MutableList<String>> {
         val args = invocation.arguments()
 
         if (args.size == 1) return CompletableFuture.completedFuture(StringUtil.copyPartialMatches(args[0], collectAllPlayerNames(), LinkedList()))
-        else if (args.size == 2) return CompletableFuture.completedFuture(StringUtil.copyPartialMatches(args[1], arrayListOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"), LinkedList()))
+        else if (args.size == 2) return CompletableFuture.completedFuture(StringUtil.copyPartialMatches(args[1], arrayListOf("1", "2", "3", "4", "5"), LinkedList()))
 
         return CompletableFuture.completedFuture(Collections.emptyList())
     }
@@ -94,13 +101,6 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
         }
 
         return names
-    }
-
-    private fun getUUID(source: CommandSource): UUID {
-        return when (source) {
-            is Player -> source.uniqueId
-            else -> UUID.randomUUID()
-        }
     }
 
     private fun assertIdIsNumeric(input: String, source: CommandSource): Int {

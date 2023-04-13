@@ -88,6 +88,9 @@ id-format-error: "&cDie ID muss eine gültige Zahl sein!"
 # Nachricht, welche dem Spieler auf dem Screen angezeigt wird, wenn er vom Server gebannt wurde.
 ban-disconnect: "&cDu wurdest gebannt."
 
+# Nachricht, die gesendet wird, wenn ein Spieler gebannt wurde
+ban-banned: "&aDu hast &c%player% &agebannt."
+
 # Nachricht, welche dem Spieler gesendet wird, falls der zu bannende Spieler bereits gebannt ist.
 already-banned: "&cDieser Spieler ist bereits gebannt!"
 
@@ -125,6 +128,31 @@ ban-id-not-found: "&cBann &8» &7%id%: %reason% &8» &e%duration%"
 
 # Nachricht, welche gesendet wird, wenn ein Spieler entbannt wurde.
 player-unbanned: "&aDu hast den Spieler &6%player% &aentbannt."
+
+# Nachricht, die gesendet ird, wenn die eingegebene numerische ID nicht gefunden wurde
+# Placeholder:
+#   - %id% - Die ID
+#   - %reason% - Der Name des Mutegrunds
+#   - %duration% - Die Länge des Mutes
+mute-id-not-found: "&cMute &8» &7%id%: %reason% &8» &e%duration%"
+
+# Nachricht, welche dem Spieler gesendet wird, falls der zu mutende Spieler bereits gemutet ist.
+already-muted: "&cDieser Spieler ist bereits gemutet!"
+
+# Nachricht, welche gesendet wird, wenn ein Spieler nicht gemutet ist.
+not-muted: "&cDieser Spieler ist nicht gemutet!"
+
+# Nachricht, die gesendet wird, wenn ein Spieler gemutet wurde
+mute-muted: "&aDu hast &c%player% &agemutet."
+
+# Nachricht, welche gesendet wird, wenn ein Spieler entmutet wurde.
+player-unmuted: "&aDu hast den Spieler &6%player% &aentmutet."
+
+# Nachricht, wenn eine Nachricht in den Teamchat gesendet wird
+# Placeholder:
+#   - %player% - Der Name des Spielers, der die Nachricht geschickt hat
+#   - %message% - Die Nachricht
+teamchat: "&7[&5Team&7] &3%player% &8» &7%message%"
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #
@@ -184,22 +212,22 @@ ban-duration-1: -1
 ban-duration-2: 1209600000
 
 # Länge des Banns mit der ID #3 in Sekunden
-ban-duration-3: 604800
+ban-duration-3: 60480000
 
 # Länge des Banns mit der ID #4 in Sekunden
-ban-duration-4: 604800
+ban-duration-4: 60480000
 
 # Länge des Banns mit der ID #5 in Sekunden
-ban-duration-5: 1814400
+ban-duration-5: 18144000
 
 # Länge des Banns mit der ID #6 in Sekunden
-ban-duration-6: 259200
+ban-duration-6: 25920000
 
 # Länge des Banns mit der ID #7 in Sekunden
-ban-duration-7: 604800
+ban-duration-7: 60480000
 
 # Länge des Banns mit der ID #8 in Sekunden
-ban-duration-8: 604800
+ban-duration-8: 60480000
 
 # Länge des Banns mit der ID #9 in Sekunden
 ban-duration-9: -1
@@ -208,13 +236,13 @@ ban-duration-9: -1
 ban-duration-10: -1
 
 # Länge des Banns mit der ID #11 in Sekunden
-ban-duration-11: 604800
+ban-duration-11: 60480000
 
 # Länge des Banns mit der ID #12 in Sekunden
-ban-duration-12: 259200
+ban-duration-12: 25920000
 
 # Länge des Banns mit der ID #13 in Sekunden
-ban-duration-13: 259200
+ban-duration-13: 25920000
 
 # Länge des Banns mit der ID #14 in Sekunden
 ban-duration-14: -1
@@ -244,19 +272,19 @@ mute-reason-4: "Verhalten | Respektlos"
 mute-reason-5: "Verhalten | Asozial"
 
 # Länge des Banns mit der ID #1 in Sekunden
-mute-duration-1: 0
+mute-duration-1: 60480000
 
 # Länge des Banns mit der ID #2 in Sekunden
-mute-duration-2: 0
+mute-duration-2: 60480000
 
 # Länge des Banns mit der ID #3 in Sekunden
-mute-duration-3: 0
+mute-duration-3: 60480000
 
 # Länge des Banns mit der ID #4 in Sekunden
-mute-duration-4: 0
+mute-duration-4: 60480000
 
 # Länge des Banns mit der ID #5 in Sekunden
-mute-duration-5: 0
+mute-duration-5: 60480000
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR REPORTS RELEVANT IST!

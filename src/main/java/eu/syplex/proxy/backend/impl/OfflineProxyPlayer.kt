@@ -89,6 +89,19 @@ class OfflineProxyPlayer(private val name: String) : ProxiedPlayer {
             .send()
     }
 
+    override fun unmute(player: Player) {
+        unmute()
+
+        StaticQueryAdapter.builder()
+            .query("INSERT INTO player_unmutes (uuid, executor_uuid) VALUES (?, ?);")
+            .parameter { stmt ->
+                stmt.setString(uuid.toString())
+                stmt.setString(player.uniqueId.toString())
+            }
+            .insert()
+            .send()
+    }
+
     override fun isBanned(): Boolean {
         return StaticQueryAdapter.builder(Boolean::class.java)
             .query("SELECT uuid FROM player_bans WHERE uuid=?;")

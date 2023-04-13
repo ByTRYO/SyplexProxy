@@ -8,6 +8,7 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory
 import com.velocitypowered.api.proxy.ProxyServer
 import eu.syplex.proxy.backend.PlayerTracker
 import eu.syplex.proxy.backend.database.sadu.StaticDataLoader
+import eu.syplex.proxy.backend.listener.ChatListener
 import eu.syplex.proxy.backend.listener.PostLoginListener
 import eu.syplex.proxy.command.*
 import eu.syplex.proxy.config.ConfigLoader
@@ -39,10 +40,14 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
         pool.register(KickCommand(proxyServer, translator, playerTracker), "kick")
         pool.register(BanCommand(proxyServer, translator, configurationNode, playerTracker), "bann", "ban")
         pool.register(UnbanCommand(translator, playerTracker), "unban")
+        pool.register(MuteCommand(translator, proxyServer, playerTracker, configurationNode), "mute")
+        pool.register(UnmuteCommand(translator, playerTracker), "unmute")
+        pool.register(TeamChatCommand(proxyServer, translator), "teamchat", "tc")
     }
 
     private fun registerListener() {
         proxyServer.eventManager.register(this, PostLoginListener(playerTracker, translator))
+        proxyServer.eventManager.register(this, ChatListener(playerTracker, translator))
     }
 
 }
