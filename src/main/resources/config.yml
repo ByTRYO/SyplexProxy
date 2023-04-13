@@ -97,6 +97,9 @@ already-banned: "&cDieser Spieler ist bereits gebannt!"
 # Nachricht, welche gesendet wird, wenn ein Spieler nicht gebannt ist.
 not-banned: "&cDieser Spieler ist nicht gebannt!"
 
+# Nachricht, welche gesendet wird, wenn ein Spieler gebannt ist.
+is-banned: "&cDieser Spieler ist gebannt!"
+
 # Erste Zeile des Bann-Screens
 # Placeholder:
 #   - %duration% - Die Länge des Banns
@@ -142,11 +145,20 @@ already-muted: "&cDieser Spieler ist bereits gemutet!"
 # Nachricht, welche gesendet wird, wenn ein Spieler nicht gemutet ist.
 not-muted: "&cDieser Spieler ist nicht gemutet!"
 
+# Nachricht, welche gesendet wird, wenn ein Spieler gemutet ist.
+is-muted: "&cDieser Spieler ist gemutet!"
+
 # Nachricht, die gesendet wird, wenn ein Spieler gemutet wurde
 mute-muted: "&aDu hast &c%player% &agemutet."
 
 # Nachricht, welche gesendet wird, wenn ein Spieler entmutet wurde.
 player-unmuted: "&aDu hast den Spieler &6%player% &aentmutet."
+
+# Nachricht, welche gesendet wird, wenn abgefragt wird, ob jemand gebannt ist.
+player-ban-check: "&7Ban-status: "
+
+# Nachricht, welche gesendet wird, wenn abgefragt wird, ob jemand gemutet ist.
+player-mute-check: "&7Mute-status: "
 
 # Nachricht, wenn eine Nachricht in den Teamchat gesendet wird
 # Placeholder:
