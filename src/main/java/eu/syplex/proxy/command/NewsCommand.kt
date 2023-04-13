@@ -3,7 +3,8 @@ package eu.syplex.proxy.command
 import com.velocitypowered.api.command.SimpleCommand
 import com.velocitypowered.api.proxy.Player
 import eu.syplex.proxy.util.ComponentTranslator
-import eu.syplex.proxy.util.news.NewsFetcher
+import eu.syplex.proxy.config.news.NewsFetcher
+import eu.syplex.proxy.util.Placeholder
 
 
 class NewsCommand(private val translator: ComponentTranslator, private val news: NewsFetcher) : SimpleCommand {
@@ -17,7 +18,7 @@ class NewsCommand(private val translator: ComponentTranslator, private val news:
         }
 
         if (args.isNotEmpty()) {
-            sender.sendMessage(translator.fromConfig("invalid-usage"))
+            sender.sendMessage(translator.fromConfigWithReplacement("invalid-usage", Placeholder.command, "news"))
             return
         }
 
