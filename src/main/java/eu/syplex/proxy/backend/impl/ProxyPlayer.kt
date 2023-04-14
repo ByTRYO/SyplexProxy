@@ -1,6 +1,7 @@
 package eu.syplex.proxy.backend.impl
 
 import com.velocitypowered.api.proxy.Player
+import de.chojo.sadu.wrapper.util.Row
 import eu.syplex.proxy.backend.ProxiedPlayer
 import eu.syplex.proxy.backend.database.sadu.StaticQueryAdapter
 import eu.syplex.proxy.backend.punishment.custructor.reason.BanReason
@@ -167,6 +168,23 @@ class ProxyPlayer(private val player: Player, private val translator: ComponentT
             .query("SELECT name FROM players, player_bans WHERE players.uuid = player_bans.uuid AND players.uuid = ?;")
             .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }
             .readRow { row -> row.getString("name") }
+            .firstSync()
+    }
+
+    override fun countBans(): Optional<Int> {
+        return StaticQueryAdapter.builder(Int::class.java)
+            .query("SELECT COUNT(*) as ban_count FROM player_bans WHERE executor_uuid = ?;")
+            .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }
+            .readRow { row -> row.getInt("ban_count") }
+            .firstSync()
+
+    }
+
+    override fun countMutes(): Optional<Int> {
+        return StaticQueryAdapter.builder(Int::class.java)
+            .query("SELECT COUNT(*) as mute_count FROM player_mutes WHERE executor_uuid = ?;")
+            .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }
+            .readRow { row -> row.getInt("mute_count") }
             .firstSync()
     }
 
