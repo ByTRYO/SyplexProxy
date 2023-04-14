@@ -1,4 +1,4 @@
-package eu.syplex.proxy.util.news
+package eu.syplex.proxy.config.news
 
 import ninja.leaping.configurate.ConfigurationNode
 import ninja.leaping.configurate.loader.ConfigurationLoader

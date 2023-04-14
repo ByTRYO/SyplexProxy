@@ -1,4 +1,4 @@
-package eu.syplex.proxy.util.news
+package eu.syplex.proxy.config.news
 
 import com.google.common.reflect.TypeToken
 import net.kyori.adventure.text.TextComponent
