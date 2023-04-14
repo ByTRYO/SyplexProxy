@@ -13,11 +13,12 @@ import eu.syplex.proxy.backend.listener.PostLoginListener
 import eu.syplex.proxy.command.*
 import eu.syplex.proxy.config.ConfigLoader
 import eu.syplex.proxy.config.PropertyLoader
+import eu.syplex.proxy.config.news.NewsFetcher
+import eu.syplex.proxy.config.news.NewsLoader
 import eu.syplex.proxy.util.CommandPool
 import eu.syplex.proxy.util.ComponentTranslator
 import eu.syplex.proxy.util.JoinMeValidator
-import eu.syplex.proxy.config.news.NewsFetcher
-import eu.syplex.proxy.config.news.NewsLoader
+import eu.syplex.proxy.util.Notifier
 import ninja.leaping.configurate.ConfigurationNode
 import java.nio.file.Path
 import java.util.logging.Logger
@@ -31,6 +32,7 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
     private val validator: JoinMeValidator = JoinMeValidator(this, proxyServer, translator)
     private val newsLoader: ConfigurationNode = NewsLoader(dataDirectory).configurationNode
     private val newsFetcher: NewsFetcher = NewsFetcher(newsLoader)
+    private val notifier: Notifier = Notifier(proxyServer, translator)
 
     @Subscribe
     fun onProxyInitialization(event: ProxyInitializeEvent) {
@@ -54,6 +56,7 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
         pool.register(NewsCommand(translator, newsFetcher), "news")
         pool.register(HelpCommand(translator), "help", "hilfe", "?")
         pool.register(CheckCommand(translator, playerTracker), "check")
+        pool.register(ReportCommand(translator, proxyServer, configurationNode, playerTracker, notifier), "report")
     }
 
     private fun registerListener() {
