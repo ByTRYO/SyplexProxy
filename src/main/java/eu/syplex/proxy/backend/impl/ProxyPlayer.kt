@@ -87,7 +87,6 @@ class ProxyPlayer(private val player: Player, private val translator: ComponentT
         player.disconnect(reason)
 
         val translated = MiniMessage.miniMessage().stripTags(reason.content())
-
         History.createEntry(player.uniqueId, KickEntry(player.uniqueId, Timestamp.from(Instant.now()), translated))
     }
 
