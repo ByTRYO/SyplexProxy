@@ -95,7 +95,7 @@ ban-banned: "&aDu hast &c%player% &agebannt."
 already-banned: "&cDieser Spieler ist bereits gebannt!"
 
 # Nachricht, welche gesendet wird, wenn ein Spieler nicht gebannt ist.
-not-banned: "&cDieser Spieler ist nicht gebannt!"
+not-banned: "&aDieser Spieler ist nicht gebannt!"
 
 # Nachricht, welche gesendet wird, wenn ein Spieler gebannt ist.
 is-banned: "&cDieser Spieler ist gebannt!"
@@ -143,7 +143,7 @@ mute-id-not-found: "&cMute &8» &7%id%: %reason% &8» &e%duration%"
 already-muted: "&cDieser Spieler ist bereits gemutet!"
 
 # Nachricht, welche gesendet wird, wenn ein Spieler nicht gemutet ist.
-not-muted: "&cDieser Spieler ist nicht gemutet!"
+not-muted: "&aDieser Spieler ist nicht gemutet!"
 
 # Nachricht, welche gesendet wird, wenn ein Spieler gemutet ist.
 is-muted: "&cDieser Spieler ist gemutet!"
