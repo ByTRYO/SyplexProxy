@@ -181,9 +181,25 @@ joinme-error: "&cEs ist ein Fehler aufgetreten, versuche es später erneut"
 #Zeit in Sekunden wie lange ein Delay für dem JoinMe Command.
 joinme-delay: 30
 
-#Nachricht, wenn ein Spieler ausserhalb eines JoinMes versucht eines anzunehmen.
+# Nachricht, wenn ein Spieler ausserhalb eines JoinMes versucht eines anzunehmen.
 joinme-not-active: "&cEs ist zurzeit kein JoinMe aktiv"
 
+# Nachricht, bei der Abfrage an gebannten spielern
+status-ban-message: "&eGebannte Spieler: §c%count%"
+
+# Nachricht, bei der Abfrage an gemuteten spielern
+status-mute-message: "&eGemutete Spieler: §c%count%"
+
+# Nachricht, wenn ein Fehler auftritt beim laden vom Status
+status-error: "§cEs ist beim laden des Status ein Fehler aufgetreten"
+
+# Header für Status-command
+status-header: "&8←——————————––––‹ &e%player% &8›——————————––––→"
+
+# Footer für Status-command
+status-footer: "&8←——————————––––‹ &eStatistik &8›——————————––––→"
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Nachrichten, die dem Spieler gesendet werden, wenn er Hilfe braucht.
 help:
   - "&8←——————————––––‹ &eHilfe &8›——————————––––→"
