@@ -30,7 +30,7 @@ class CheckCommand(private val translator: ComponentTranslator, private val trac
         }
 
         sender.sendMessage(translator.fromConfig("player-ban-check").append(setBanAnswer(player.isBanned())))
-        sender.sendMessage(translator.fromConfig("player-muted-check").append(setMuteAnswer(player.isMuted())))
+        sender.sendMessage(translator.fromConfig("player-mute-check").append(setMuteAnswer(player.isMuted())))
 
     }
 
