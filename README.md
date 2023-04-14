@@ -11,7 +11,7 @@
 - [x] Unban Befehl
 - [x] Unmute Befehl
 - [ ] Status Befehl
-- [ ] Check Befehl
+- [x] Check Befehl
 - [x] JoinMe Befehl
 - [x] TeamChat Befehl
 - [x] Help Befehl
