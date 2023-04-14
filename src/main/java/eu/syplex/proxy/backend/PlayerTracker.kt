@@ -14,7 +14,7 @@ class PlayerTracker {
     }
 
     fun get(uuid: UUID): ProxyPlayer? {
-        return players.getOrDefault(uuid, null)
+        return players[uuid]
     }
 
     fun get(name: String): ProxiedPlayer {
