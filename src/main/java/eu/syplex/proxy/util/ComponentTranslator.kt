@@ -1,5 +1,6 @@
 package eu.syplex.proxy.util
 
+import com.google.common.reflect.TypeToken
 import net.kyori.adventure.text.TextComponent
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import ninja.leaping.configurate.ConfigurationNode
@@ -8,6 +9,14 @@ class ComponentTranslator(private val configurationNode: ConfigurationNode) {
 
     fun fromConfig(node: String): TextComponent {
         return LegacyComponentSerializer.legacyAmpersand().deserialize(raw(node))
+    }
+
+    fun listFromConfig(node: String): ArrayList<TextComponent> {
+        val components = ArrayList<TextComponent>()
+        configurationNode.getNode(node).getList(TypeToken.of(String::class.java)).forEach { node ->
+            components.add(LegacyComponentSerializer.legacyAmpersand().deserialize(node))
+        }
+        return components
     }
 
     fun fromConfigWithReplacement(node: String, placeholder: String, replacement: String): TextComponent {
@@ -38,5 +47,6 @@ class ComponentTranslator(private val configurationNode: ConfigurationNode) {
     fun raw(node: String): String {
         return configurationNode.getNode(node).getString(null)
     }
+
 
 }
