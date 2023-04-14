@@ -44,7 +44,7 @@ class BanCommand(private val proxyServer: ProxyServer, private val translator: C
         }
 
         val target = optionalPlayer.get()
-        val proxyPlayer = playerTracker.get(target.username)
+        val proxyPlayer = playerTracker.get(target.uniqueId) ?: return
         val id = assertIdIsNumeric(args[1], source)
 
         if (!proxyPlayer.exists()) {
