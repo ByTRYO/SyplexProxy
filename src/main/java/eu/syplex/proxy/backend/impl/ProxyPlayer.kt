@@ -6,6 +6,7 @@ import eu.syplex.proxy.backend.ProxiedPlayer
 import eu.syplex.proxy.backend.database.sadu.StaticQueryAdapter
 import eu.syplex.proxy.backend.punishment.custructor.reason.BanReason
 import eu.syplex.proxy.backend.punishment.custructor.reason.MuteReason
+import eu.syplex.proxy.backend.punishment.custructor.reason.ReportReason
 import eu.syplex.proxy.backend.punishment.entry.History
 import eu.syplex.proxy.backend.punishment.entry.impl.BanEntry
 import eu.syplex.proxy.backend.punishment.entry.impl.KickEntry
@@ -133,6 +134,20 @@ class ProxyPlayer(private val player: Player, private val translator: ComponentT
             .send()
     }
 
+    fun report(reason: ReportReason, reporterUUID: UUID, serverName: String, replayId: String?) {
+        StaticQueryAdapter.builder()
+            .query("INSERT INTO open_reports (uuid, reporter_uuid, reason, server, replay_id) VALUES (?, ?, ?, ?, ?);")
+            .parameter { stmt ->
+                stmt.setString(player.uniqueId.toString())
+                stmt.setString(reporterUUID.toString())
+                stmt.setString(reason.name)
+                stmt.setString(serverName)
+                stmt.setString(replayId)
+            }
+            .insert()
+            .send()
+    }
+
     fun getBanEntry(): Optional<BanEntry> {
         return StaticQueryAdapter.builder(BanEntry::class.java)
             .query("SELECT * FROM player_bans WHERE uuid=?;")
@@ -163,7 +178,7 @@ class ProxyPlayer(private val player: Player, private val translator: ComponentT
             .firstSync()
     }
 
-    fun getName(): Optional<String> {
+    fun name(): Optional<String> {
         return StaticQueryAdapter.builder(String::class.java)
             .query("SELECT name FROM players, player_bans WHERE players.uuid = player_bans.uuid AND players.uuid = ?;")
             .parameter { stmt -> stmt.setString(player.uniqueId.toString()) }

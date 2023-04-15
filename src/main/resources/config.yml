@@ -209,6 +209,18 @@ help:
   - "&3Bsp 3 &8| &aVerwendung für XYZ"
   - " "
   - "&8←——————————––––‹ &eHilfe &8›——————————––––→"
+
+# Nachricht, die gesendet wird, wenn ein Grund nicht gefunden wurde
+report-reason-not-found: "&cReport &8» &7%reason%"
+
+# Nachricht, welche gesendet wird, wenn ein Report erstellt wurde
+report-reported: "&aDer Report wurde erstellt."
+
+# Nachricht, welche an alle Teammitglieder gesendet wird, wenn ein Report erstellt wurde
+notify-report: "&cReport &8» &5%target% &7für &5%reason% "
+
+# Klickbarer Teil der Nachricht davor
+notify-report-clickable: "&a[Beitreten]"
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AB HIER BEGINNT DER TEIL, WELCHER FÜR BANNS RELEVANT IST!
 #

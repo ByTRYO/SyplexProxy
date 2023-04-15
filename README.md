@@ -6,7 +6,7 @@
 # Feature list:
 - [x] Bann Befehl
 - [x] Kick Befehl
-- [ ] Report System
+- [x] Report System
 - [x] Mute Befehl
 - [x] Unban Befehl
 - [x] Unmute Befehl

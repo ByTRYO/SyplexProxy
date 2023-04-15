@@ -19,7 +19,7 @@ class PlayerTracker {
 
     fun get(name: String): ProxiedPlayer {
         for (proxyPlayer in players.values) {
-            val proxyPlayerName = proxyPlayer.getName().orElse(null) ?: continue
+            val proxyPlayerName = proxyPlayer.name().orElse(null) ?: continue
 
             if (!proxyPlayerName.equals(name, false)) continue
             return proxyPlayer
