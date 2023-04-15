@@ -54,6 +54,7 @@ class ProxyPlugin @Inject constructor(val proxyServer: ProxyServer, logger: Logg
         pool.register(NewsCommand(translator, newsFetcher), "news")
         pool.register(HelpCommand(translator), "help", "hilfe", "?")
         pool.register(CheckCommand(translator, playerTracker), "check")
+        pool.register(StatusCommand(translator, playerTracker), "status")
     }
 
     private fun registerListener() {

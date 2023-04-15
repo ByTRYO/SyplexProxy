@@ -10,7 +10,7 @@
 - [x] Mute Befehl
 - [x] Unban Befehl
 - [x] Unmute Befehl
-- [ ] Status Befehl
+- [x] Status Befehl
 - [x] Check Befehl
 - [x] JoinMe Befehl
 - [x] TeamChat Befehl

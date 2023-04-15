@@ -14,5 +14,6 @@ object Placeholder {
     const val id = "%id%"
     const val message = "%message%"
     const val server = "%server%"
+    const val count = "%count%"
 
 }

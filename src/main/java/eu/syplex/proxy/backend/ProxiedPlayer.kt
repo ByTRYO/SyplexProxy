@@ -25,4 +25,8 @@ interface ProxiedPlayer {
 
     fun isMuted(): Boolean
 
+    fun countBans() : Optional<Int>
+
+    fun countMutes() : Optional<Int>
+
 }
