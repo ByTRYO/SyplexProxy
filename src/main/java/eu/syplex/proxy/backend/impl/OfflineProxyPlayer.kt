@@ -120,7 +120,7 @@ class OfflineProxyPlayer(private val name: String) : ProxiedPlayer {
 
     override fun countBans(): Optional<Int> {
         return StaticQueryAdapter.builder(Int::class.java)
-            .query("SELECT COUNT(*) as ban_count FROM player_bans WHERE executor_uuid = ?;")
+            .query("SELECT COUNT(*) AS ban_count FROM player_bans WHERE executor_uuid = ?;")
             .parameter { stmt -> stmt.setString(uuid.toString()) }
             .readRow { row -> row.getInt("ban_count") }
             .firstSync()
@@ -129,7 +129,7 @@ class OfflineProxyPlayer(private val name: String) : ProxiedPlayer {
 
     override fun countMutes(): Optional<Int> {
         return StaticQueryAdapter.builder(Int::class.java)
-            .query("SELECT COUNT(*) as mute_count FROM player_mutes WHERE executor_uuid = ?;")
+            .query("SELECT COUNT(*) AS mute_count FROM player_mutes WHERE executor_uuid = ?;")
             .parameter { stmt -> stmt.setString(uuid.toString()) }
             .readRow { row -> row.getInt("mute_count") }
             .firstSync()
